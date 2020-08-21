@@ -1,4 +1,4 @@
-package com.zoewave.breathezy.api.bike.data
+package com.ylabz.goswift.api.bike.data
 
 data class BikeAPIs(
     val `data`: API_Data,

@@ -1,4 +1,4 @@
-package com.zoewave.breathezy.api.bike.data
+package com.ylabz.goswift.api.bike.data
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

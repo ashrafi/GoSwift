@@ -11,9 +11,11 @@ val roomVersion = "2.2.5"
 val archLifecycleVersion = "2.2.0"
 val filamentVersion = "1.8.1"
 val retrofitVersion = "2.9.0"
-val okhttp3Version = "4.7.2"
+val okhttp3Version = "4.8.1"
 val conscryptVersion = "2.4.0"
-val moshiVersion = "1.9.2"
+val moshiVersion = "1.9.3"
+val workmanVersion = "2.4.0"
+val pagingVersion = "2.1.2"
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -64,6 +66,16 @@ dependencies {
 
     // moshi
     implementation ("com.squareup.moshi:moshi-kotlin:$moshiVersion")//1.9.2'
+
+    // Workmanager
+    // optional - GCMNetworkManager support
+    implementation ("androidx.work:work-gcm:$workmanVersion")
+    // Kotlin + coroutines
+    implementation ("androidx.work:work-runtime-ktx:$workmanVersion")
+
+    // Paging lib
+    implementation ("androidx.paging:paging-runtime:$pagingVersion")
+
 
 }
 

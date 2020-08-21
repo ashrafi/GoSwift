@@ -1,11 +1,11 @@
-package com.zoewave.breathezy.api.bike
+package com.ylabz.goswift.api.bike
 
 import android.util.Log
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.zoewave.breathezy.api.bike.data.BikeAPIs
-import com.zoewave.breathezy.api.bike.data.BikeStationInfo
-import com.zoewave.breathezy.api.bike.data.BikeSysInfo
+import com.ylabz.goswift.api.bike.data.BikeAPIs
+import com.ylabz.goswift.api.bike.data.BikeStationInfo
+import com.ylabz.goswift.api.bike.data.BikeSysInfo
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
