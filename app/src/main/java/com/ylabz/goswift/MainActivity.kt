@@ -2,11 +2,11 @@ package com.ylabz.goswift
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.Composable
-import androidx.ui.core.setContent
-import androidx.ui.foundation.Text
-import androidx.ui.material.MaterialTheme
-import androidx.ui.material.Surface
+import androidx.compose.foundation.Text
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.ui.GoSwiftTheme
 
@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
             GoSwiftTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    Greeting("Go Swift Bike")
                 }
             }
         }
