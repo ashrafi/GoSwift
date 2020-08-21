@@ -1,0 +1,31 @@
+{
+  "station_id": "55",
+  "eightd_station_services": [
+
+  ],
+  "lon": -122.4295585,
+  "capacity": 27,
+  "eightd_has_key_dispenser": false,
+  "lat": 37.7770527,
+  "external_id": "fde4cecd-7497-4bdb-a452-0e1a755e7759",
+  "rental_methods": [
+    "CREDITCARD",
+    "KEY"
+  ],
+  "name": "Webster St at Grove St",
+  "rental_uris": {
+    "android": "https://sfo.lft.to/lastmile_qr_scan",
+    "ios": "https://sfo.lft.to/lastmile_qr_scan"
+  },
+  "has_kiosk": true,
+  "short_name": "SF-J20",
+  "electric_bike_surcharge_waiver": false,
+  "station_type": "classic",
+  "region_id": "3",
+
+
+  "Info": "https://www.lyft.com/bikes/bay-wheels/system-data",
+  "General Bikeshare Feed Specification GBFS": "https://github.com/NABSA/gbfs/blob/master/gbfs.md"
+
+
+}
