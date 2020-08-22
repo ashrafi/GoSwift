@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id ("dagger.hilt.android.plugin")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
@@ -16,6 +17,8 @@ val conscryptVersion = "2.4.0"
 val moshiVersion = "1.9.3"
 val workmanVersion = "2.4.0"
 val pagingVersion = "2.1.2"
+val hiltVersion = "2.28.3-alpha"
+val hiltCompiler = "1.0.0-alpha02"
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -39,6 +42,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion")
     kapt("androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion")
+    // inject the ModelView
+    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:$hiltCompiler")//1.0.0-alpha02'
+    // When using Kotlin.
+    kapt ("androidx.hilt:hilt-compiler:$hiltCompiler")//1.0.0-alpha02'
 
     // Compose
     implementation("androidx.compose.animation:animation:$composeVersion")
@@ -76,6 +83,19 @@ dependencies {
     // Paging lib
     implementation ("androidx.paging:paging-runtime:$pagingVersion")
 
+    // hilt
+    implementation ("com.google.dagger:hilt-android:$hiltVersion")//2.28.3-alpha'
+    kapt ("com.google.dagger:hilt-android-compiler:$hiltVersion")//2.28.3-alpha'
+
+
+    // Testing
+    // For instrumentation tests
+    androidTestImplementation  ("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
+
+    // For local unit tests
+    testImplementation ("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
 }
 
@@ -118,6 +138,10 @@ android {
     composeOptions {
         kotlinCompilerVersion = "1.4.0-rc"
         kotlinCompilerExtensionVersion = composeVersion
+    }
+
+    kapt {
+        correctErrorTypes = true
     }
 
     packagingOptions {

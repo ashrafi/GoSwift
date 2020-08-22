@@ -5,8 +5,15 @@ plugins {
 
 allprojects {
     repositories {
+        mavenCentral()
         maven(url = "https://dl.bintray.com/kotlin/kotlin-eap/")
         jcenter()
         google()
+    }
+}
+
+buildscript {
+    dependencies {
+        classpath("com.google.dagger:hilt-android-gradle-plugin:2.28.3-alpha")
     }
 }
