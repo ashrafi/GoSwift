@@ -19,6 +19,7 @@ val workmanVersion = "2.4.0"
 val pagingVersion = "2.1.2"
 val hiltVersion = "2.28.3-alpha"
 val hiltCompiler = "1.0.0-alpha02"
+val glideVersion = "4.11.0"
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -87,6 +88,9 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:$hiltVersion")//2.28.3-alpha'
     kapt ("com.google.dagger:hilt-android-compiler:$hiltVersion")//2.28.3-alpha'
 
+    // Glide
+    implementation ("com.github.bumptech.glide:glide:$glideVersion")//4.11.0'
+    kapt ("com.github.bumptech.glide:compiler:$glideVersion")
 
     // Testing
     // For instrumentation tests
