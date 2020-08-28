@@ -1,18 +1,31 @@
 package com.ylabz.goswift.ui
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Button
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ImageAsset
+import androidx.compose.ui.graphics.asImageAsset
+import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.unit.dp
+import androidx.core.graphics.drawable.toBitmap
+import coil.Coil
+import coil.request.GetRequest
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class MainComposeUI {
     @Composable
     fun Greeting(name: String) {
         Column {
             Text (text = "Hello From Main $name!")
+            showImage()
             HomeScreen()
         }
     }
@@ -53,6 +66,44 @@ class MainComposeUI {
             // composable to render text on the screen
             Text(text = "Nav to Bike", modifier = Modifier.padding(16.dp))
         }
+
+        Button(
+                modifier = Modifier.padding(16.dp),
+                elevation = 5.dp,
+                onClick = {
+
+                }) {
+            // The Button composable allows you to provide child composables that inherit this button
+            // functionality.
+            // The Text composable is pre-defined by the Compose UI library; you can use this
+            // composable to render text on the screen
+            Text(text = "Call API", modifier = Modifier.padding(16.dp))
+        }
+    }
+
+    @Composable
+    fun showImage() {
+        //val image = state<ImageAsset> { ImageAsset(24, 24) }
+        val image = remember { mutableStateOf(ImageAsset(24,24)) }
+        val image_data =
+                "https://www.sail-world.com/photos/sailworld/photos/Large_610577174_SD5_3584.jpg"
+
+        val request = GetRequest.Builder(ContextAmbient.current)
+                .data(image_data)
+                //.transformations(CircleCropTransformation())
+                .build()
+
+        CoroutineScope(Dispatchers.Main.immediate).launch {
+            // Start loading the image and await the result.
+            val drawable = Coil.execute(request).drawable
+            image.value = drawable?.toBitmap(
+                    width = drawable.intrinsicWidth,
+                    height = drawable.intrinsicHeight
+            )!!.asImageAsset()
+        }
+
+        Image(asset = image.value)
+
     }
 
 }

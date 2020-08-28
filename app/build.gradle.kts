@@ -20,6 +20,7 @@ val pagingVersion = "2.1.2"
 val hiltVersion = "2.28.3-alpha"
 val hiltCompiler = "1.0.0-alpha02"
 val glideVersion = "4.11.0"
+val coilVersion = "0.11.0"
 
 dependencies {
     implementation(kotlin("stdlib"))
@@ -91,6 +92,9 @@ dependencies {
     // Glide
     implementation ("com.github.bumptech.glide:glide:$glideVersion")//4.11.0'
     kapt ("com.github.bumptech.glide:compiler:$glideVersion")
+
+    // coil
+    implementation  ("io.coil-kt:coil:$coilVersion")
 
     // Testing
     // For instrumentation tests
