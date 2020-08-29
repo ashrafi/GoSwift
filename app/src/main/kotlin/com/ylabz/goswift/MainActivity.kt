@@ -11,8 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.ui.*
+import com.ylabz.goswift.ui.util.GoSwiftTheme
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var mainComposeUI: MainComposeUI
+
+    @Inject
+    lateinit var bikeComposeUI : BikeComposeUI
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -21,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                 Surface(color = MaterialTheme.colors.background) {
                     Column {
                         Greeting("Go Swift Bike 2")
-                        AppContent(mainComposeUI = MainComposeUI(), bikeComposeUI = BikeComposeUI())
+                        AppContent(mainComposeUI = mainComposeUI, bikeComposeUI = bikeComposeUI)
                     }
 
                 }

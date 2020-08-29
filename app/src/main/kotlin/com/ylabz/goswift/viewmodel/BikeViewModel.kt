@@ -2,6 +2,7 @@ package com.ylabz.goswift.viewmodels
 
 import android.app.Application
 import android.util.Log
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -13,7 +14,7 @@ import com.ylabz.goswift.repo.BikeRepository
 /**
  * the viewmodel is started in the onCreateView() in a Fragment
  */
-class BikeViewModel(applicationContext: Application)  : AndroidViewModel(applicationContext) {
+class BikeViewModel @ViewModelInject constructor(applicationContext: Application)  : AndroidViewModel(applicationContext) {
     // TODO: Implement the ViewModel
 
     //make repo call

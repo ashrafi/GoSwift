@@ -1,4 +1,4 @@
-package com.ylabz.goswift.ui
+package com.ylabz.goswift.ui.util
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

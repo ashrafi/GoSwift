@@ -11,7 +11,7 @@ import kotlinx.coroutines.async
 import retrofit2.awaitResponse
 
 //make repo call
-private val TAG: String? = "Breather"
+private val TAG: String? = "GoSwift"
 
 /**
  * Connects to both the [remote data source object] -- retrofit
@@ -62,9 +62,6 @@ class BikeRepository(private val stationDao: StationDao) {
             stationList?.data?.stations?.forEach{
                 stationDao.insert(Station(it.name, it.lat, it.lon, it.capacity))
             }
-
-
-
         }
 
         Log.v(TAG, "bike API Service Sent")

@@ -13,14 +13,18 @@ import androidx.compose.ui.graphics.ImageAsset
 import androidx.compose.ui.graphics.asImageAsset
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.viewModel
 import androidx.core.graphics.drawable.toBitmap
 import coil.Coil
 import coil.request.GetRequest
+import com.ylabz.goswift.viewmodels.BikeViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainComposeUI {
+
+class MainComposeUI @Inject constructor() {
     @Composable
     fun Greeting(name: String) {
         Column {

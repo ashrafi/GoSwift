@@ -1,4 +1,4 @@
-package com.ylabz.goswift.ui
+package com.ylabz.goswift.ui.util
 
 import androidx.compose.ui.graphics.Color
 
