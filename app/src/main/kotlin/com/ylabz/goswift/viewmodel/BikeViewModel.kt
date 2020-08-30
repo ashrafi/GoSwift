@@ -18,7 +18,7 @@ class BikeViewModel @ViewModelInject constructor(applicationContext: Application
     // TODO: Implement the ViewModel
 
     //make repo call
-    private val TAG: String? = "Breather"
+    private val TAG: String? = "GoSwift"
     // The ViewModel maintains a reference to the repository to get data.
     private val bikeRepo : BikeRepository
 
