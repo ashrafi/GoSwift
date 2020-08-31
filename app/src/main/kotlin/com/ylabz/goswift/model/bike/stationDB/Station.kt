@@ -1,4 +1,4 @@
-package com.ylabz.goswift.data.database.model
+package com.ylabz.goswift.model.bike.stationDB
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

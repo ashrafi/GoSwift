@@ -5,21 +5,15 @@ import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnFor
-import androidx.compose.foundation.lazy.LazyColumnItems
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.launchInComposition
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
-import androidx.lifecycle.LiveData
-import com.ylabz.goswift.data.database.model.Station
-import com.ylabz.goswift.viewmodels.BikeViewModel
+import com.ylabz.goswift.model.BikeViewModel
 import javax.inject.Inject
 
 /**
@@ -40,7 +34,10 @@ class BikeComposeUI @Inject constructor() {
     fun bikeStationList() {
         val bikeViewModel = viewModel<BikeViewModel>()
         //launchInComposition {}
-        val stationList by bikeViewModel.getBikeInfo().observeAsState(initial = emptyList())
+        // Live Data
+        //val stationList by bikeViewModel.getBikeInfo().observeAsState(initial = emptyList())
+        // Flow
+        val stationList = bikeViewModel.getBikeInfo().collectAsState(initial = emptyList()).value
         Log.v("GoSwift", "data is ${stationList.size}")
         Column() {
             LazyColumnFor(items = stationList, itemContent = { bikeS ->

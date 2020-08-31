@@ -1,12 +1,10 @@
-package com.ylabz.goswift.data.database.db
+package com.ylabz.goswift.model.bike.stationDB
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.ylabz.goswift.data.database.StationDao
-import com.ylabz.goswift.data.database.model.Station
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -29,7 +27,7 @@ abstract class StationRoomDB : RoomDatabase() {
         ): StationRoomDB {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
-            return StationRoomDB.INSTANCE ?: synchronized(this) {
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     StationRoomDB::class.java,
@@ -37,7 +35,7 @@ abstract class StationRoomDB : RoomDatabase() {
                 )
                     .addCallback(StationDatabaseCallback(scope))
                     .build()
-                StationRoomDB.INSTANCE = instance
+                INSTANCE = instance
                 // return instance
                 instance
             }
@@ -55,7 +53,7 @@ abstract class StationRoomDB : RoomDatabase() {
             super.onOpen(db)
             // If you want to keep the data through app restarts,
             // comment out the following line.
-            StationRoomDB.INSTANCE?.let { database ->
+            INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
                     populateDatabase(database.stationDao())
                 }
@@ -70,7 +68,6 @@ abstract class StationRoomDB : RoomDatabase() {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
             //stationDao.deleteAll()
-
             stationDao.insert(Station("ash", 0.0, 0.0, 5))
         }
     }
