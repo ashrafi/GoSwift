@@ -70,6 +70,7 @@ dependencies {
     // retrofit2
     implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")//2.9.0'
     implementation ("com.squareup.retrofit2:converter-moshi:$retrofitVersion") //2.9.0
+    implementation ("com.squareup.okhttp3:okhttp:$okhttp3Version")
     implementation ("com.squareup.okhttp3:logging-interceptor:$okhttp3Version")//4.7.2'
     implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")//2.9.0'
     implementation ("org.conscrypt:conscrypt-android:$conscryptVersion")//2.4.0'
@@ -158,7 +159,7 @@ android {
     }
 
     aaptOptions {
-        noCompress("filamat", "ktx", "glb")
+        noCompress("ktx", "glb")
     }
 }
 

@@ -7,7 +7,6 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityRetainedComponent
 import dagger.hilt.android.scopes.ActivityRetainedScoped
-import retrofit2.Retrofit
 
 object RepoModule {
     @InstallIn(ActivityRetainedComponent::class)
@@ -16,8 +15,8 @@ object RepoModule {
 
         @Provides
         @ActivityRetainedScoped
-        fun provideStatoionRepo(stationDao: StationDao, retrofit: Retrofit): StationRepo {
-            return StationRepo(StationDao, retrofit)
+        fun provideStatoionRepo(stationDao: StationDao/*, retrofit: Retrofit*/): StationRepo {
+            return StationRepo(stationDao/*, retrofit*/)
         }
     }
 

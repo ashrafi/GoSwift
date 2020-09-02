@@ -60,7 +60,7 @@ object NetworkModule {
     }
 
     //make repo call
-    private val TAG: String? = "Breather"
+    private val TAG: String? = "GoSwift"
     private val BIKE_STATION_BASE_URL = "https://gbfs.fordgobike.com/"
 
     interface BikeSysApiService {
