@@ -15,7 +15,7 @@ import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
 import coil.Coil
-import coil.request.GetRequest
+import coil.request.ImageRequest
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -90,7 +90,7 @@ class MainComposeUI @Inject constructor() {
         val image_data =
                 "https://www.sail-world.com/photos/sailworld/photos/Large_610577174_SD5_3584.jpg"
 
-        val request = GetRequest.Builder(ContextAmbient.current)
+        val request = ImageRequest.Builder(ContextAmbient.current)
                 .data(image_data)
                 //.transformations(CircleCropTransformation())
                 .build()
