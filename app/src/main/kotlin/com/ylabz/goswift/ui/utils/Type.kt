@@ -1,4 +1,4 @@
-package com.ylabz.goswift.ui.util
+package com.ylabz.goswift.ui.utils
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

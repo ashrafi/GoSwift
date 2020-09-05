@@ -2,16 +2,18 @@ package com.ylabz.goswift.ui.components
 
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.InnerPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.BikeScooter
-import androidx.compose.material.icons.filled.PlusOne
 import androidx.compose.material.icons.filled.Today
 import androidx.compose.runtime.Composable
-import com.ylabz.goswift.ui.NavScreen
-import com.ylabz.goswift.ui.navigateTo
+import androidx.ui.tooling.preview.Preview
+import com.ylabz.goswift.ui.utils.NavScreen
+import com.ylabz.goswift.ui.utils.navigateTo
 
 @Composable
 fun ScaffoldWithBottomBarAndCutout(bodyContent: @Composable() (InnerPadding) -> Unit) {
@@ -35,7 +37,7 @@ fun ScaffoldWithBottomBarAndCutout(bodyContent: @Composable() (InnerPadding) -> 
         },
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {},
+                onClick = { navigateTo(NavScreen.Bike) },//XXX got o new palce to add value},
                 // We specify the same shape that we passed as the cutoutShape above.
                 shape = fabShape,
                 // We use the secondary color from the current theme. It uses the defaults when
@@ -44,8 +46,8 @@ fun ScaffoldWithBottomBarAndCutout(bodyContent: @Composable() (InnerPadding) -> 
                 // example of using themes.
                 backgroundColor = MaterialTheme.colors.secondary
             ) {
-                IconButton(onClick = {}) {
-                    Icon(asset = Icons.Filled.PlusOne)
+                IconButton(onClick = { navigateTo(NavScreen.AddToGo) }) {
+                    Icon(asset = Icons.Filled.Add)
                 }
             }
         },
@@ -68,4 +70,18 @@ fun bottomBar() {
             Icon(Icons.Filled.Today)
         }
     }
+}
+
+@Composable
+fun testBody(padding: InnerPadding) : @Composable() (InnerPadding) -> Unit = {
+    Column() {
+        Text("Hello")
+    }
+}
+
+
+@Preview
+@Composable
+fun PreviewScaffoldWithBottomBarAndCutout() {
+    ScaffoldWithBottomBarAndCutout(testBody(InnerPadding()))
 }

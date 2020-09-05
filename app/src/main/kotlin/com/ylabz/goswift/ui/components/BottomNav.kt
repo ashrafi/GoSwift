@@ -12,6 +12,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.ui.tooling.preview.Preview
 
 
 val colors = listOf(
@@ -23,9 +24,6 @@ val colors = listOf(
 )
 
 private val listItems = listOf("Games", "Apps", "Movies", "Books")
-
-
-
 
 @Composable
 fun BottomNavigationOnlySelectedLabelComponent() {
@@ -65,4 +63,10 @@ fun BottomNavigationOnlySelectedLabelComponent() {
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun PreviewBottomNavigationOnlySelectedLabelComponent() {
+    BottomNavigationOnlySelectedLabelComponent()
 }

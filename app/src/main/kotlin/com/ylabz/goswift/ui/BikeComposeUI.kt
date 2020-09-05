@@ -13,7 +13,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
+import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.model.BikeViewModel
+import com.ylabz.goswift.ui.utils.NavScreen
+import com.ylabz.goswift.ui.utils.navigateTo
 import javax.inject.Inject
 
 /**
@@ -74,5 +77,11 @@ class BikeComposeUI @Inject constructor() {
             // composable to render text on the screen
             Text(text = "Nav Home", modifier = Modifier.padding(16.dp))
         }
+    }
+
+    @Preview
+    @Composable
+    fun PreviewBikeComposeUI() {
+        Greeting("hi")
     }
 }

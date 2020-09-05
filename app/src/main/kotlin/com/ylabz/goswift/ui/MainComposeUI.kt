@@ -14,8 +14,11 @@ import androidx.compose.ui.graphics.asImageAsset
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.unit.dp
 import androidx.core.graphics.drawable.toBitmap
+import androidx.ui.tooling.preview.Preview
 import coil.Coil
 import coil.request.ImageRequest
+import com.ylabz.goswift.ui.utils.NavScreen
+import com.ylabz.goswift.ui.utils.navigateTo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -108,4 +111,10 @@ class MainComposeUI @Inject constructor() {
 
     }
 
+    @Preview
+    @Composable
+    fun PreviewMainComposeUI() {
+        Greeting("hi")
+    }
 }
+

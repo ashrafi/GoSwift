@@ -15,14 +15,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.ylabz.goswift.ui.AppScreen
 import com.ylabz.goswift.ui.BikeComposeUI
 import com.ylabz.goswift.ui.MainComposeUI
-import com.ylabz.goswift.ui.NavScreen
+import com.ylabz.goswift.ui.ToGoAdd
 import com.ylabz.goswift.ui.components.BottomNavigationOnlySelectedLabelComponent
 import com.ylabz.goswift.ui.components.ScaffoldWithBottomBarAndCutout
 import com.ylabz.goswift.ui.components.colors
-import com.ylabz.goswift.ui.util.GoSwiftTheme
+import com.ylabz.goswift.ui.utils.AppScreen
+import com.ylabz.goswift.ui.utils.GoSwiftTheme
+import com.ylabz.goswift.ui.utils.NavScreen
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var mainComposeUI: MainComposeUI
 
     @Inject
-    lateinit var bikeComposeUI : BikeComposeUI
+    lateinit var bikeComposeUI: BikeComposeUI
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,12 +78,17 @@ private fun mainWin(mainComposeUI: MainComposeUI, bikeComposeUI: BikeComposeUI) 
             when (screen) {
                 is NavScreen.Home -> mainComposeUI.Greeting("main")
                 is NavScreen.Bike -> bikeComposeUI.Greeting("Bike")
+                is NavScreen.AddToGo -> ToGoAdd()
             }
         }
     }
 }
 
-private fun bodyContent(mainComposeUI: MainComposeUI, bikeComposeUI: BikeComposeUI, padding: InnerPadding) : @Composable() (InnerPadding) -> Unit =  { padding ->
+private fun bodyContent(
+    mainComposeUI: MainComposeUI,
+    bikeComposeUI: BikeComposeUI,
+    padding: InnerPadding
+): @Composable() (InnerPadding) -> Unit = { padding ->
     // ScrollableColumn is a composable that adds the ability to scroll through the
     // child views
     ScrollableColumn {
@@ -92,7 +98,8 @@ private fun bodyContent(mainComposeUI: MainComposeUI, bikeComposeUI: BikeCompose
     }
 }
 
-private fun bodyContentScroll(padding: InnerPadding) : @Composable() (InnerPadding) -> Unit =  { padding ->
+private fun bodyContentScroll(padding: InnerPadding): @Composable() (InnerPadding) -> Unit =
+    { padding ->
         // ScrollableColumn is a composable that adds the ability to scroll through the
         // child views
         ScrollableColumn {
@@ -122,7 +129,7 @@ private fun AppContent(
 ) {
     Column {
         BottomNavigationOnlySelectedLabelComponent()
-        ScaffoldWithBottomBarAndCutout( bodyContent(mainComposeUI, bikeComposeUI, InnerPadding()) )
+        ScaffoldWithBottomBarAndCutout(bodyContent(mainComposeUI, bikeComposeUI, InnerPadding()))
     }
 
 }
