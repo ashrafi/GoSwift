@@ -1,4 +1,4 @@
-package com.ylabz.goswift.model.bike.stationDB
+package com.ylabz.goswift.model.togo.ToGoDB
 
 import android.content.Context
 import androidx.room.Database
@@ -9,29 +9,31 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Station::class), version = 1, exportSchema = false)
-abstract class StationRoomDB : RoomDatabase() {
-    abstract fun stationDao(): StationDao
+@Database(entities = arrayOf(ToGo::class), version = 1, exportSchema = false)
+abstract class ToGoRoomDB : RoomDatabase() {
+
+
+    abstract fun toGoDao(): ToGoDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
         // same time.
         @Volatile
-        private var INSTANCE: StationRoomDB? = null
+        private var INSTANCE: ToGoRoomDB? = null
 
-        fun getStationRoomDB(
+        fun getToGoRoomDB(
             context: Context,
             scope: CoroutineScope
-        ): StationRoomDB {
+        ): ToGoRoomDB {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    StationRoomDB::class.java,
-                    "bike_station_database"
+                    ToGoRoomDB::class.java,
+                    "to_go_database"
                 )
-                    .addCallback(StationDatabaseCallback(scope))
+                    .addCallback(ToGoDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 // return instance
@@ -40,7 +42,7 @@ abstract class StationRoomDB : RoomDatabase() {
         }
     }
 
-    private class StationDatabaseCallback(
+    private class ToGoDatabaseCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
         /**
@@ -53,7 +55,7 @@ abstract class StationRoomDB : RoomDatabase() {
             // comment out the following line.
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    populateDatabase(database.stationDao())
+                    populateDatabase(database.toGoDao())
                 }
             }
         }
@@ -62,11 +64,20 @@ abstract class StationRoomDB : RoomDatabase() {
          * Populate the database in a new coroutine.
          * If you want to start with more words, just add them.
          */
-        suspend fun populateDatabase(stationDao: StationDao) {
+        suspend fun populateDatabase(toGoDao: ToGoDao) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-            //stationDao.deleteAll()
-            stationDao.insert(Station("ash", 0.0, 0.0, 5))
+            toGoDao.insert(ToGo("ash", 0.0, 0.0))
         }
     }
+
+
+
+
+
+
+
+
+
+
 }
