@@ -16,8 +16,12 @@ class ToGoRepo @Inject constructor(private val toGoDao: ToGoDao) {
         dataDao.deleteAll()
     }*/
 
-    fun getToGoInfo() : Flow<List<ToGo>> {
+    fun getToGoInfo(): Flow<List<ToGo>> {
         return toGoDao.getAll()
+    }
+
+    suspend fun insert(toGoItem: ToGo) {
+        toGoDao.insert(toGoItem)
     }
 
     private val TAG: String = "GoSwift"

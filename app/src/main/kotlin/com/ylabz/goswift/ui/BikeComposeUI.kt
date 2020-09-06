@@ -15,6 +15,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.model.BikeViewModel
+import com.ylabz.goswift.ui.components.DetailsActivityArg
+import com.ylabz.goswift.ui.components.DetailsScreen
 import com.ylabz.goswift.ui.utils.NavScreen
 import com.ylabz.goswift.ui.utils.navigateTo
 import javax.inject.Inject
@@ -26,10 +28,11 @@ class BikeComposeUI @Inject constructor() {
 
     @Composable
     fun Greeting(name: String) {
-        Column() {
+        Column {
             Text(text = "Hello From Bike $name!")
-            bikeStationList()
-            SimpleButtonComponentBike()
+            DetailsScreen(DetailsActivityArg("ash", "code", "37.7749", "122.4194"))
+            //bikeStationList()
+            //SimpleButtonComponentBike()
         }
     }
 
@@ -42,7 +45,7 @@ class BikeComposeUI @Inject constructor() {
         // Flow
         val stationList = bikeViewModel.getBikeInfo().collectAsState(initial = emptyList()).value
         Log.v("GoSwift", "data is ${stationList.size}")
-        Column() {
+        Column {
             LazyColumnFor(items = stationList, itemContent = { bikeS ->
                 Card(
                     //color = Color.Cyan,

@@ -1,12 +1,13 @@
 plugins {
     id("com.android.application")
-    id ("dagger.hilt.android.plugin")
+    id("dagger.hilt.android.plugin")
     kotlin("android")
     kotlin("android.extensions")
     kotlin("kapt")
+    id("kotlin-android")
 }
 
-val composeVersion = "1.0.0-alpha01"
+val composeVersion = "1.0.0-alpha02"
 val coroutinesVersion = "1.3.9-native-mt"
 val roomVersion = "2.2.5"
 val archLifecycleVersion = "2.2.0"
@@ -21,8 +22,12 @@ val hiltVersion = "2.28.3-alpha"
 val hiltCompiler = "1.0.0-alpha02"
 val glideVersion = "4.11.0"
 val coilVersion = "0.12.0"
+val googleMapsVersion = "3.1.0-beta"
 
 dependencies {
+
+    // Google Maps
+    implementation("com.google.android.libraries.maps:maps:$googleMapsVersion")
 
     // Kotlin components
     implementation(kotlin("stdlib"))
@@ -30,7 +35,7 @@ dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion")
 
     // Material
-    implementation("com.google.android.material:material:1.2.0")
+    implementation("com.google.android.material:material:1.2.1")
 
     // -- remove all livedata
     //implementation "androidx.ui:ui-livedata:$ui_version"
@@ -43,6 +48,8 @@ dependencies {
     // ROOM
     implementation("androidx.room:room-runtime:$roomVersion")
     implementation("androidx.room:room-ktx:$roomVersion")
+    implementation("com.google.android.gms:play-services-maps:17.0.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.0.1")
     kapt("androidx.room:room-compiler:$roomVersion")
     annotationProcessor("androidx.room:room-compiler:$roomVersion")
 
@@ -51,9 +58,9 @@ dependencies {
     kapt("androidx.lifecycle:lifecycle-common-java8:$archLifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion")
     // inject the ModelView
-    implementation ("androidx.hilt:hilt-lifecycle-viewmodel:$hiltCompiler")//1.0.0-alpha02'
+    implementation("androidx.hilt:hilt-lifecycle-viewmodel:$hiltCompiler")//1.0.0-alpha02'
     // When using Kotlin.
-    kapt ("androidx.hilt:hilt-compiler:$hiltCompiler")//1.0.0-alpha02'
+    kapt("androidx.hilt:hilt-compiler:$hiltCompiler")//1.0.0-alpha02'
 
     // Compose
     implementation("androidx.compose.animation:animation:$composeVersion")
@@ -68,44 +75,44 @@ dependencies {
 
     // Retrofit
     // retrofit2
-    implementation ("com.squareup.retrofit2:retrofit:$retrofitVersion")//2.9.0'
-    implementation ("com.squareup.retrofit2:converter-moshi:$retrofitVersion") //2.9.0
-    implementation ("com.squareup.okhttp3:okhttp:$okhttp3Version")
-    implementation ("com.squareup.okhttp3:logging-interceptor:$okhttp3Version")//4.7.2'
-    implementation ("com.squareup.retrofit2:converter-gson:$retrofitVersion")//2.9.0'
-    implementation ("org.conscrypt:conscrypt-android:$conscryptVersion")//2.4.0'
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")//2.9.0'
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion") //2.9.0
+    implementation("com.squareup.okhttp3:okhttp:$okhttp3Version")
+    implementation("com.squareup.okhttp3:logging-interceptor:$okhttp3Version")//4.7.2'
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")//2.9.0'
+    implementation("org.conscrypt:conscrypt-android:$conscryptVersion")//2.4.0'
 
     // moshi
-    implementation ("com.squareup.moshi:moshi-kotlin:$moshiVersion")//1.9.2'
+    implementation("com.squareup.moshi:moshi-kotlin:$moshiVersion")//1.9.2'
 
     // Workmanager
     // optional - GCMNetworkManager support
-    implementation ("androidx.work:work-gcm:$workmanVersion")
+    implementation("androidx.work:work-gcm:$workmanVersion")
     // Kotlin + coroutines
-    implementation ("androidx.work:work-runtime-ktx:$workmanVersion")
+    implementation("androidx.work:work-runtime-ktx:$workmanVersion")
 
     // Paging lib
-    implementation ("androidx.paging:paging-runtime:$pagingVersion")
+    implementation("androidx.paging:paging-runtime:$pagingVersion")
 
     // hilt
-    implementation ("com.google.dagger:hilt-android:$hiltVersion")//2.28.3-alpha'
-    kapt ("com.google.dagger:hilt-android-compiler:$hiltVersion")//2.28.3-alpha'
+    implementation("com.google.dagger:hilt-android:$hiltVersion")//2.28.3-alpha'
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")//2.28.3-alpha'
 
     // Glide
-    implementation ("com.github.bumptech.glide:glide:$glideVersion")//4.11.0'
-    kapt ("com.github.bumptech.glide:compiler:$glideVersion")
+    implementation("com.github.bumptech.glide:glide:$glideVersion")//4.11.0'
+    kapt("com.github.bumptech.glide:compiler:$glideVersion")
 
     // coil
-    implementation  ("io.coil-kt:coil:$coilVersion")
+    implementation("io.coil-kt:coil:$coilVersion")
 
     // Testing
     // For instrumentation tests
-    androidTestImplementation  ("com.google.dagger:hilt-android-testing:$hiltVersion")
-    kaptAndroidTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptAndroidTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
     // For local unit tests
-    testImplementation ("com.google.dagger:hilt-android-testing:$hiltVersion")
-    kaptTest ("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    testImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
+    kaptTest("com.google.dagger:hilt-android-compiler:$hiltVersion")
 
 }
 
@@ -130,7 +137,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
 
@@ -166,6 +176,10 @@ android {
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
-        freeCompilerArgs = listOf("-Xallow-jvm-ir-dependencies", "-Xskip-prerelease-check", "-Xskip-metadata-version-check")
+        freeCompilerArgs = listOf(
+            "-Xallow-jvm-ir-dependencies",
+            "-Xskip-prerelease-check",
+            "-Xskip-metadata-version-check"
+        )
     }
 }
