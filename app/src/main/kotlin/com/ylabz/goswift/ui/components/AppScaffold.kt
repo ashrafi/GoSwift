@@ -7,18 +7,17 @@ import androidx.compose.foundation.layout.InnerPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.BikeScooter
-import androidx.compose.material.icons.filled.Today
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.ui.utils.NavScreen
 import com.ylabz.goswift.ui.utils.navigateTo
 
 @Composable
-fun ScaffoldWithBottomBarAndCutout(bodyContent: @Composable() (InnerPadding) -> Unit) {
+fun ScaffoldWithBottomBarAndCutout(viewContent: @Composable() (InnerPadding) -> Unit) {
     // Consider negative values to mean 'cut corner' and positive values to mean 'round corner'
     val fabShape = RoundedCornerShape(50)
+    //val bodyContent: @Composable() (InnerPadding) -> Unit = {Text("Hi2 ")}
     // Scaffold is a pre-defined composable that implements the basic material design visual
     // layout structure. It takes in child composables for all the common elements that you see
     // in an app using material design - app bar, bottom app bar, floating action button, etc. It
@@ -52,13 +51,19 @@ fun ScaffoldWithBottomBarAndCutout(bodyContent: @Composable() (InnerPadding) -> 
             }
         },
         floatingActionButtonPosition = FabPosition.End,
-        bodyContent = bodyContent
+        bodyContent = viewContent
     )
 }
+
 
 @Composable
 fun bottomBar() {
     BottomAppBar {
+        IconButton(onClick = {
+            navigateTo(NavScreen.Home)
+        }) {
+            Icon(Icons.Filled.Home)
+        }
         IconButton(onClick = {
             navigateTo(NavScreen.Bike)
         }) {
@@ -69,12 +74,18 @@ fun bottomBar() {
         }) {
             Icon(Icons.Filled.Today)
         }
+        IconButton(onClick = {
+            navigateTo(NavScreen.Map)
+        }) {
+            Icon(Icons.Filled.Map)
+        }
+
     }
 }
 
 @Composable
-fun testBody(padding: InnerPadding) : @Composable() (InnerPadding) -> Unit = {
-    Column() {
+fun testBody(): @Composable() (InnerPadding) -> Unit = {
+    Column {
         Text("Hello")
     }
 }
@@ -83,5 +94,5 @@ fun testBody(padding: InnerPadding) : @Composable() (InnerPadding) -> Unit = {
 @Preview
 @Composable
 fun PreviewScaffoldWithBottomBarAndCutout() {
-    ScaffoldWithBottomBarAndCutout(testBody(InnerPadding()))
+    ScaffoldWithBottomBarAndCutout(testBody())
 }

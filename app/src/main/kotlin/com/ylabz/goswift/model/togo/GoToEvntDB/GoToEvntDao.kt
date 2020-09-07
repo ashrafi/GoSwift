@@ -1,4 +1,4 @@
-package com.ylabz.goswift.model.togo.ToGoDB
+package com.ylabz.goswift.model.togo.GoToEvntDB
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -6,13 +6,17 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
+
 @Dao
-interface ToGoDao {
-    @Query("SELECT * FROM ToGoEvent")
-    fun getAll(): Flow<List<ToGo>>
+interface GoToEvntDao {
+    @Query("SELECT * FROM GoToEvent")
+    fun getAll(): Flow<List<GoToEnvt>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(togo: ToGo)
+    suspend fun insert(togo: GoToEnvt)
+
+    @Query("DELETE FROM GoToEvent")
+    suspend fun deleteAll()
 
     /*
     @Query("SELECT * FROM station WHERE uid IN (:userIds)")

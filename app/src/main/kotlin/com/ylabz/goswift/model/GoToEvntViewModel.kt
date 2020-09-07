@@ -6,8 +6,8 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.ylabz.goswift.model.togo.ToGoDB.ToGo
-import com.ylabz.goswift.model.togo.ToGoRepo.ToGoRepo
+import com.ylabz.goswift.model.togo.GoToEvntDB.GoToEnvt
+import com.ylabz.goswift.model.togo.ToGoRepo.GoToEvntRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -18,17 +18,17 @@ import kotlinx.coroutines.launch
 /**
  * the viewmodel is started in the onCreateView() in a Fragment
  */
-class ToGoViewModel @ViewModelInject constructor(
-    private val toGoRepo: ToGoRepo,
+class GoToEvntViewModel @ViewModelInject constructor(
+    private val goToEvntRepo: GoToEvntRepo,
     @Assisted private val savedStateHandle: SavedStateHandle,
     applicationContext: Application
 ) : AndroidViewModel(applicationContext) {
     // TODO: Implement the ViewModel
-    lateinit var toGoTasks: Flow<List<ToGo>>
+    lateinit var goToEnvtTasks: Flow<List<GoToEnvt>>
 
     init {
         viewModelScope.launch {
-            toGoTasks = toGoRepo.getToGoInfo()
+            goToEnvtTasks = goToEvntRepo.getToGoInfo()
         }
     }
 
@@ -36,14 +36,21 @@ class ToGoViewModel @ViewModelInject constructor(
     private val TAG: String? = "GoSwift"
     // The ViewModel maintains a reference to the repository to get data.
 
-    fun getToGoInfo(): Flow<List<ToGo>> {
-        return toGoTasks
+    fun getToGoInfo(): Flow<List<GoToEnvt>> {
+        return goToEnvtTasks
     }
 
-    fun addToGoItem(toGoItem: ToGo) {
+    fun addToGoItem(goToEnvtItem: GoToEnvt) {
         viewModelScope.launch(Dispatchers.IO) {
-            toGoRepo.insert(toGoItem)
+            goToEvntRepo.insert(goToEnvtItem)
         }
+    }
+
+    fun deleteAll() {
+        viewModelScope.launch(Dispatchers.IO) {
+            goToEvntRepo.deleteAll()
+        }
+
     }
 
 }

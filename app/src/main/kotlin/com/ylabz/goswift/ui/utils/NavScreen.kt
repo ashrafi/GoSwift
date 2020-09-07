@@ -13,6 +13,7 @@ sealed class NavScreen {
     object Home : NavScreen()
     object Bike : NavScreen()
     object AddToGo : NavScreen()
+    object Map : NavScreen()
 }
 
 object AppScreen {

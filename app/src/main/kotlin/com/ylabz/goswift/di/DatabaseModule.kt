@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.ylabz.goswift.model.bike.stationDB.StationDao
 import com.ylabz.goswift.model.bike.stationDB.StationRoomDB
-import com.ylabz.goswift.model.togo.ToGoDB.ToGoDao
-import com.ylabz.goswift.model.togo.ToGoDB.ToGoRoomDB
+import com.ylabz.goswift.model.togo.GoToEvntDB.GoToEvntDao
+import com.ylabz.goswift.model.togo.GoToEvntDB.ToGoRoomDB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,7 +35,7 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideToGoDatabase(@ApplicationContext appContext: Context): ToGoRoomDB {
+    fun provideGoToDatabase(@ApplicationContext appContext: Context): ToGoRoomDB {
         return Room.databaseBuilder(
             appContext,
             ToGoRoomDB::class.java,
@@ -44,7 +44,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun toGoDao(database: ToGoRoomDB): ToGoDao {
-        return database.toGoDao()
+    fun goToDao(database: ToGoRoomDB): GoToEvntDao {
+        return database.goToEvntDao()
     }
 }

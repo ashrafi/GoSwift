@@ -18,8 +18,8 @@ object RepoModule {
 
         /*@Provides
         @ActivityRetainedScoped
-        fun provideToGoRepo(toGoDao: ToGoDao/*, retrofit: Retrofit*/): ToGoRepo {
-            return ToGoRepo(toGoDao/*, retrofit*/)
+        fun provideToGoRepo(toGoDao: GoToEvntDao/*, retrofit: Retrofit*/): GoToEvntRepo {
+            return GoToEvntRepo(toGoDao/*, retrofit*/)
         }*/
     }
 

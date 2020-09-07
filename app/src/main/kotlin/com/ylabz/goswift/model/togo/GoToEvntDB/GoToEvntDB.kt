@@ -1,4 +1,4 @@
-package com.ylabz.goswift.model.togo.ToGoDB
+package com.ylabz.goswift.model.togo.GoToEvntDB
 
 import android.content.Context
 import androidx.room.Database
@@ -9,11 +9,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(ToGo::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(GoToEnvt::class), version = 1, exportSchema = false)
 abstract class ToGoRoomDB : RoomDatabase() {
 
 
-    abstract fun toGoDao(): ToGoDao
+    abstract fun goToEvntDao(): GoToEvntDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -33,7 +33,7 @@ abstract class ToGoRoomDB : RoomDatabase() {
                     ToGoRoomDB::class.java,
                     "to_go_database"
                 )
-                    .addCallback(ToGoDatabaseCallback(scope))
+                    .addCallback(GoToDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 // return instance
@@ -42,7 +42,7 @@ abstract class ToGoRoomDB : RoomDatabase() {
         }
     }
 
-    private class ToGoDatabaseCallback(
+    private class GoToDatabaseCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
         /**
@@ -55,7 +55,7 @@ abstract class ToGoRoomDB : RoomDatabase() {
             // comment out the following line.
             INSTANCE?.let { database ->
                 scope.launch(Dispatchers.IO) {
-                    populateDatabase(database.toGoDao())
+                    populateDatabase(database.goToEvntDao())
                 }
             }
         }
@@ -64,10 +64,10 @@ abstract class ToGoRoomDB : RoomDatabase() {
          * Populate the database in a new coroutine.
          * If you want to start with more words, just add them.
          */
-        suspend fun populateDatabase(toGoDao: ToGoDao) {
+        suspend fun populateDatabase(goToEvntDao: GoToEvntDao) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-            toGoDao.insert(ToGo("ash", 0.0, 0.0))
+            goToEvntDao.insert(GoToEnvt("ash", 0.0, 0.0))
         }
     }
 
