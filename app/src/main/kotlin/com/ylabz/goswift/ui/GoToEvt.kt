@@ -17,7 +17,6 @@ import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.model.GoToEvntViewModel
 import com.ylabz.goswift.model.togo.GoToEvntDB.GoToEnvt
-import java.time.OffsetDateTime
 
 
 @Composable
@@ -53,7 +52,8 @@ fun goToEvnt() {
                         elevation = 5.dp,
                         onClick = {
                             checked = false
-                            toGoViewModel.addToGoItem(GoToEnvt(goToEvntText.text, 0.0, 0.0, OffsetDateTime.now(), "Img"))
+                            toGoViewModel.addToGoItem(GoToEnvt(goToEvntText.text, 0.0, 0.0, "Img"))
+                            //toGoViewModel.addToGoItem(GoToEnvt(goToEvntText.text, 0.0, 0.0, OffsetDateTime.now(), "Img"))
                         }) {
                         Text(text = "Add", modifier = Modifier.padding(16.dp))
                     }
@@ -81,7 +81,7 @@ fun goToEvntList() {
         LazyColumnFor(items = goToEvntList, itemContent = { goTos ->
             Row() {
                 Text(goTos.goToName)
-                Text(goTos.date.toString())
+                //Text(goTos.date.toString())
             }
         })
     }

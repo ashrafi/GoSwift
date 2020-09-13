@@ -18,8 +18,8 @@ interface GoToEvntDao {
     @Query("DELETE FROM GoToEvent")
     suspend fun deleteAll()
 
-    @Query("SELECT * FROM GoToEvent ORDER BY datetime(date)")
-    suspend fun getByDate(): List<GoToEnvt>
+    /*@Query("SELECT * FROM GoToEvent ORDER BY datetime(date)")
+    suspend fun getByDate(): List<GoToEnvt>*/
 
     /*
     @Query("SELECT * FROM station WHERE uid IN (:userIds)")
