@@ -17,6 +17,8 @@ import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.model.GoToEvntViewModel
 import com.ylabz.goswift.model.togo.GoToEvntDB.GoToEnvt
+import com.ylabz.goswift.ui.utils.NavScreen
+import com.ylabz.goswift.ui.utils.navigateTo
 import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 
@@ -24,8 +26,44 @@ import java.time.format.DateTimeFormatter
 @Composable
 fun GoToEvtAdd() {
     var checked by remember { mutableStateOf(false) }
+    var goToEvntText by remember { mutableStateOf(TextFieldValue("text")) }
+    val toGoViewModel = viewModel<GoToEvntViewModel>()
 
     Column {
+        Text("Add This")
+
+        OutlinedTextField(
+            value = goToEvntText,
+            onValueChange = {
+                goToEvntText = it
+            },
+            label = { Text("Label") }
+        )
+
+        Row {
+            Button(
+                modifier = Modifier.padding(16.dp),
+                shape = MaterialTheme.shapes.small,
+                elevation = 5.dp,
+                onClick = {
+                    //checked = false
+                    toGoViewModel.addToGoItem(GoToEnvt(goToEvntText.text, 0.0, 0.0, OffsetDateTime.now(), "Img"))
+                    navigateTo(NavScreen.GoToList)
+                }) {
+                Text(text = "Add", modifier = Modifier.padding(16.dp))
+            }
+            Button(
+                modifier = Modifier.padding(16.dp),
+                elevation = 5.dp,
+                onClick = {
+                    toGoViewModel.deleteAll()
+                    //checked = false
+                    navigateTo(NavScreen.GoToList)
+                }) {
+                Text(text = "Delete All", modifier = Modifier.padding(16.dp))
+            }
+        }
+
         Switch(
             checked = checked,
             onCheckedChange = {
@@ -33,41 +71,14 @@ fun GoToEvtAdd() {
             }
         )
         if (checked) {
-            var goToEvntText by remember { mutableStateOf(TextFieldValue("text")) }
-            val toGoViewModel = viewModel<GoToEvntViewModel>()
-
-            Column {
-                Text("Add This")
-
-                OutlinedTextField(
-                    value = goToEvntText,
-                    onValueChange = {
-                        goToEvntText = it
-                    },
-                    label = { Text("Label") }
-                )
-
-                Row {
-                    Button(
-                        modifier = Modifier.padding(16.dp),
-                        shape = MaterialTheme.shapes.small,
-                        elevation = 5.dp,
-                        onClick = {
-                            checked = false
-                            toGoViewModel.addToGoItem(GoToEnvt(goToEvntText.text, 0.0, 0.0, OffsetDateTime.now(), "Img"))
-                        }) {
-                        Text(text = "Add", modifier = Modifier.padding(16.dp))
-                    }
-                    Button(
-                        modifier = Modifier.padding(16.dp),
-                        elevation = 5.dp,
-                        onClick = {
-                            checked = false
-                            toGoViewModel.deleteAll()
-                        }) {
-                        Text(text = "Delete All", modifier = Modifier.padding(16.dp))
-                    }
-                }
+            Button(
+                modifier = Modifier.padding(16.dp),
+                elevation = 5.dp,
+                onClick = {
+                    checked = false
+                    toGoViewModel.deleteAll()
+                }) {
+                Text(text = "Delete All", modifier = Modifier.padding(16.dp))
             }
         }
     }
