@@ -45,7 +45,7 @@ fun ScaffoldWithBottomBarAndCutout(viewContent: @Composable() (InnerPadding) -> 
                 // example of using themes.
                 backgroundColor = MaterialTheme.colors.secondary
             ) {
-                IconButton(onClick = { navigateTo(NavScreen.AddToGo) }) {
+                IconButton(onClick = { navigateTo(NavScreen.GoToAdd) }) {
                     Icon(asset = Icons.Filled.Add)
                 }
             }
@@ -70,7 +70,7 @@ fun bottomBar() {
             Icon(Icons.Filled.BikeScooter)
         }
         IconButton(onClick = {
-            navigateTo(NavScreen.Bike)
+            navigateTo(NavScreen.GoToList)
         }) {
             Icon(Icons.Filled.Today)
         }

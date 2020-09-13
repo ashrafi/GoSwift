@@ -22,7 +22,7 @@ import java.time.format.DateTimeFormatter
 
 
 @Composable
-fun goToEvnt() {
+fun GoToEvtAdd() {
     var checked by remember { mutableStateOf(false) }
 
     Column {
@@ -70,12 +70,11 @@ fun goToEvnt() {
                 }
             }
         }
-        goToEvntList()
     }
 }
 
 @Composable
-fun goToEvntList() {
+fun GoToEvtList() {
     val goToEvntViewModel = viewModel<GoToEvntViewModel>()
     val goToEvntList = goToEvntViewModel.getToGoInfo().collectAsState(initial = emptyList()).value
     Column {
@@ -91,5 +90,5 @@ fun goToEvntList() {
 @Preview
 @Composable
 fun PreviewToGoAdd() {
-    goToEvnt()
+    GoToEvtList()
 }

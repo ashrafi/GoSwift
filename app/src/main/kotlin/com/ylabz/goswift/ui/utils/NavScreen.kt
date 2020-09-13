@@ -12,7 +12,8 @@ import androidx.compose.runtime.setValue
 sealed class NavScreen {
     object Home : NavScreen()
     object Bike : NavScreen()
-    object AddToGo : NavScreen()
+    object GoToAdd : NavScreen()
+    object GoToList : NavScreen()
     object Map : NavScreen()
 }
 
