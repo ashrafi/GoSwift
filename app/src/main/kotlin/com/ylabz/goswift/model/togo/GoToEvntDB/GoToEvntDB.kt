@@ -4,12 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.OffsetDateTime
+
 
 @Database(entities = arrayOf(GoToEnvt::class), version = 1, exportSchema = false)
+@TypeConverters(Converters::class)
 abstract class ToGoRoomDB : RoomDatabase() {
 
 
@@ -67,7 +71,7 @@ abstract class ToGoRoomDB : RoomDatabase() {
         suspend fun populateDatabase(goToEvntDao: GoToEvntDao) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-            goToEvntDao.insert(GoToEnvt("ash", 0.0, 0.0))
+            goToEvntDao.insert(GoToEnvt("ash", 0.0, 0.0, OffsetDateTime.now(), "img"))
         }
     }
 

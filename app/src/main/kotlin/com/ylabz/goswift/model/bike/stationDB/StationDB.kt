@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Station::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(StationInfoDB::class), version = 1, exportSchema = false)
 abstract class StationRoomDB : RoomDatabase() {
     abstract fun stationDao(): StationDao
 
@@ -66,7 +66,7 @@ abstract class StationRoomDB : RoomDatabase() {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
             //stationDao.deleteAll()
-            stationDao.insert(Station("ash", 0.0, 0.0, 5))
+            stationDao.insert(StationInfoDB("ash", 0.0, 0.0, 5))
         }
     }
 }

@@ -5,7 +5,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.ylabz.goswift.api.bike.data.BikeStationInfo
 import com.ylabz.goswift.di.NetworkModule
-import com.ylabz.goswift.model.bike.stationDB.Station
+import com.ylabz.goswift.model.bike.stationDB.StationInfoDB
 import com.ylabz.goswift.model.bike.stationDB.StationDao
 import kotlinx.coroutines.flow.Flow
 import okhttp3.OkHttpClient
@@ -26,7 +26,7 @@ class StationRepo @Inject constructor(private val stationDao: StationDao/*, priv
         dataDao.deleteAll()
     }*/
 
-    fun getSomeBikeInfo() : Flow<List<Station>> {
+    fun getSomeBikeInfo() : Flow<List<StationInfoDB>> {
         return stationDao.getAll()
     }
 
@@ -53,7 +53,7 @@ class StationRepo @Inject constructor(private val stationDao: StationDao/*, priv
 
         Log.v(TAG, "bike stations -->$stationList")
         stationList?.data?.stations?.forEach{
-            stationDao.insert(Station(it.name, it.lat, it.lon, it.capacity))
+            stationDao.insert(StationInfoDB(it.name, it.lat, it.lon, it.capacity))
         }
 
         /*val exCall = stationAPI.getExampleInfo().awaitResponse().body()

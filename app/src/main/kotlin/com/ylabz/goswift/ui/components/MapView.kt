@@ -19,14 +19,12 @@ package com.ylabz.goswift.ui.components
 import android.os.Bundle
 import androidx.annotation.FloatRange
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.runtime.savedinstancestate.savedInstanceState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ContextAmbient
 import androidx.compose.ui.platform.LifecycleOwnerAmbient
@@ -92,21 +90,21 @@ fun GoogleMap.setZoom(
 
 @Composable
 fun DetailsScreen(args: DetailsActivityArg) {
-    //Column(verticalArrangement = Arrangement.Center) {
-    //Spacer(Modifier.preferredHeight(32.dp))
-    /*Text(
-        modifier = Modifier.gravity(Alignment.CenterHorizontally),
-        text = args.name,
-        style = MaterialTheme.typography.h4
-    )
-    Text(
-        modifier = Modifier.gravity(Alignment.CenterHorizontally),
-        text = args.description,
-        style = MaterialTheme.typography.h6
-    )*/
-    //Spacer(Modifier.preferredHeight(16.dp))
-    CityMapView(args.latitude, args.longitude)
-    //}
+    Column(verticalArrangement = Arrangement.Center) {
+        Spacer(Modifier.preferredHeight(15.dp))
+        Text(
+            modifier = Modifier.gravity(Alignment.CenterHorizontally),
+            text = args.name,
+            style = MaterialTheme.typography.subtitle1
+        )
+        Text(
+            modifier = Modifier.gravity(Alignment.CenterHorizontally),
+            text = args.description,
+            style = MaterialTheme.typography.subtitle2
+        )
+        Spacer(Modifier.preferredHeight(9.dp))
+        CityMapView(args.latitude, args.longitude)
+    }
 }
 
 @Composable
@@ -120,6 +118,28 @@ private fun CityMapView(latitude: String, longitude: String) {
 }
 
 @Composable
+fun JustMapUI(latitude: Double, longitude: Double) {
+    val justMapView = rememberMapViewWithLifecycle()
+    AndroidView(
+        //modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+        //postInflationCallback =
+        { justMapView }
+    ) { mapView ->
+        // Reading zoom so that AndroidView recomposes when it changes. The getMapAsync lambda
+        // is stored for later, Compose doesn't recognize state reads
+        mapView.getMapAsync {
+            val position = LatLng(latitude, longitude)
+            it.addMarker(
+                MarkerOptions().position(position)
+            )
+            it.moveCamera(CameraUpdateFactory.newLatLng(position))
+        }
+        //mapView.minimumHeight = 400
+    }
+
+}
+
+@Composable
 private fun MapViewContainer(
     map: MapView,
     latitude: String,
@@ -127,9 +147,9 @@ private fun MapViewContainer(
 ) {
     var zoom by savedInstanceState { InitialZoom }
 
-    /*ZoomControls(zoom) {
+    ZoomControls(zoom) {
         zoom = it.coerceIn(MinZoom, MaxZoom)
-    }*/
+    }
     AndroidView(
         //modifier = Modifier.fillMaxWidth().fillMaxHeight(),
         //postInflationCallback =
@@ -146,7 +166,7 @@ private fun MapViewContainer(
             )
             it.moveCamera(CameraUpdateFactory.newLatLng(position))
         }
-        mapView.minimumHeight = 400
+        //mapView.minimumHeight = 400
     }
 }
 
@@ -164,7 +184,8 @@ private fun ZoomControls(
 @Composable
 private fun ZoomButton(text: String, onClick: () -> Unit) {
     Button(
-        modifier = Modifier.padding(8.dp),
+        modifier = Modifier.padding(4.dp).size(34.dp, 34.dp),
+        shape = MaterialTheme.shapes.small,
         backgroundColor = MaterialTheme.colors.onPrimary,
         contentColor = MaterialTheme.colors.primary,
         onClick = onClick

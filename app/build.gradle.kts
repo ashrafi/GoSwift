@@ -122,7 +122,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ylabz.goswift"
-        minSdkVersion(25)
+        minSdkVersion(26)
         targetSdkVersion(29)
         versionCode = 1
         versionName = "1.0"

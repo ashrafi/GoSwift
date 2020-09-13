@@ -12,14 +12,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.ui.tooling.preview.Preview
-import com.ylabz.goswift.ui.components.BottomNavigationOnlySelectedLabelComponent
 import com.ylabz.goswift.ui.components.colors
 import com.ylabz.goswift.ui.utils.AppScreen
 import com.ylabz.goswift.ui.utils.GoSwiftTheme
 
 
 @Composable
-fun Greeting(name: String) {
+fun GreetingHold(name: String) {
     Text(text = "Hello $name!")
 }
 
@@ -27,12 +26,12 @@ fun Greeting(name: String) {
 @Composable
 fun DefaultPreview() {
     GoSwiftTheme {
-        Greeting("Android")
+        GreetingHold("Android")
     }
 }
 
 @Composable
-private fun mainWin(mainComposeUI: MainComposeUI, bikeComposeUI: BikeComposeUI) {
+private fun mainWin(mainComposeUI: MainComposeUI) {
     Crossfade(AppScreen.currentScreen) { screen ->
         Surface(color = MaterialTheme.colors.background) {
 
@@ -52,14 +51,13 @@ private fun mainWin(mainComposeUI: MainComposeUI, bikeComposeUI: BikeComposeUI) 
 
 private fun bodyContent(
     mainComposeUI: MainComposeUI,
-    bikeComposeUI: BikeComposeUI,
     padding: InnerPadding
 ): @Composable() (InnerPadding) -> Unit = { padding ->
     // ScrollableColumn is a composable that adds the ability to scroll through the
     // child views
     ScrollableColumn {
         Column {
-            mainWin(mainComposeUI, bikeComposeUI)
+            mainWin(mainComposeUI)
         }
     }
 }
@@ -90,11 +88,10 @@ private fun bodyContentScroll(padding: InnerPadding): @Composable() (InnerPaddin
 
 @Composable
 private fun AppContent(
-    mainComposeUI: MainComposeUI,
-    bikeComposeUI: BikeComposeUI
+    mainComposeUI: MainComposeUI
 ) {
     Column {
-        BottomNavigationOnlySelectedLabelComponent()
+        //BottomNavigationOnlySelectedLabelComponent()
         //ScaffoldWithBottomBarAndCutout(bodyContent(mainComposeUI, bikeComposeUI, InnerPadding()))
     }
 

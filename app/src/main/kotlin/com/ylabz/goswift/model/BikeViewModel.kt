@@ -11,7 +11,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.ylabz.goswift.model.bike.StationRepo
-import com.ylabz.goswift.model.bike.stationDB.Station
+import com.ylabz.goswift.model.bike.stationDB.StationInfoDB
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
@@ -44,7 +44,7 @@ class BikeViewModel @ViewModelInject constructor(
     private val TAG: String? = "GoSwift"
     // The ViewModel maintains a reference to the repository to get data.
 
-    fun getBikeInfo(): Flow<List<Station>> {
+    fun getBikeInfo(): Flow<List<StationInfoDB>> {
         return stationRepo.getSomeBikeInfo()
     }
 

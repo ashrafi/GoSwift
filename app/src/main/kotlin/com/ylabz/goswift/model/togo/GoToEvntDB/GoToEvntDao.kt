@@ -18,13 +18,16 @@ interface GoToEvntDao {
     @Query("DELETE FROM GoToEvent")
     suspend fun deleteAll()
 
+    @Query("SELECT * FROM GoToEvent ORDER BY datetime(date)")
+    suspend fun getByDate(): List<GoToEnvt>
+
     /*
     @Query("SELECT * FROM station WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<Station>
+    fun loadAllByIds(userIds: IntArray): List<StationInfoDB>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(station: Station)
+    suspend fun insert(station: StationInfoDB)
 
     @Delete("DELETE FROM word_table")
-    suspend fun delete(station: Station)*/
+    suspend fun delete(station: StationInfoDB)*/
 }

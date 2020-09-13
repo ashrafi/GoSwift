@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.material.Button
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
 import androidx.compose.material.Switch
 import androidx.compose.runtime.*
@@ -16,6 +17,7 @@ import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.model.GoToEvntViewModel
 import com.ylabz.goswift.model.togo.GoToEvntDB.GoToEnvt
+import java.time.OffsetDateTime
 
 
 @Composable
@@ -47,10 +49,11 @@ fun goToEvnt() {
                 Row {
                     Button(
                         modifier = Modifier.padding(16.dp),
+                        shape = MaterialTheme.shapes.small,
                         elevation = 5.dp,
                         onClick = {
                             checked = false
-                            toGoViewModel.addToGoItem(GoToEnvt(goToEvntText.text, 0.0, 0.0))
+                            toGoViewModel.addToGoItem(GoToEnvt(goToEvntText.text, 0.0, 0.0, OffsetDateTime.now(), "Img"))
                         }) {
                         Text(text = "Add", modifier = Modifier.padding(16.dp))
                     }
@@ -76,7 +79,10 @@ fun goToEvntList() {
     val goToEvntList = goToEvntViewModel.getToGoInfo().collectAsState(initial = emptyList()).value
     Column {
         LazyColumnFor(items = goToEvntList, itemContent = { goTos ->
-            Text(goTos.goToName)
+            Row() {
+                Text(goTos.goToName)
+                Text(goTos.date.toString())
+            }
         })
     }
 }

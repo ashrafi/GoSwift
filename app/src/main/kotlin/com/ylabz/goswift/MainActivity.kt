@@ -8,21 +8,20 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
-import com.ylabz.goswift.ui.*
+import com.ylabz.goswift.ui.HomeUI
+import com.ylabz.goswift.ui.MapUI
+import com.ylabz.goswift.ui.bikeInfo
 import com.ylabz.goswift.ui.components.ScaffoldWithBottomBarAndCutout
+import com.ylabz.goswift.ui.goToEvnt
 import com.ylabz.goswift.ui.utils.AppScreen
 import com.ylabz.goswift.ui.utils.NavScreen
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    @Inject
-    lateinit var mainComposeUI: MainComposeUI
-
-    @Inject
-    lateinit var bikeComposeUI: BikeComposeUI
+    /*@Inject
+    lateinit var mainComposeUI: MainComposeUI*/
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +43,7 @@ class MainActivity : AppCompatActivity() {
                     })*/
                     when (screen) {
                         is NavScreen.Home -> HomeUI()
-                        is NavScreen.Bike -> bikeComposeUI.Greeting("Bike")
+                        is NavScreen.Bike -> bikeInfo("Bike")
                         is NavScreen.AddToGo -> goToEvnt()
                         is NavScreen.Map -> MapUI()
                     }

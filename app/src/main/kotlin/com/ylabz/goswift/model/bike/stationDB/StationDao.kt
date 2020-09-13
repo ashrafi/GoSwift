@@ -13,18 +13,18 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface StationDao {
     @Query("SELECT * FROM station")
-    fun getAll(): Flow<List<Station>>
+    fun getAll(): Flow<List<StationInfoDB>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(station: Station)
+    suspend fun insert(station: StationInfoDB)
 
     /*
     @Query("SELECT * FROM station WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<Station>
+    fun loadAllByIds(userIds: IntArray): List<StationInfoDB>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(station: Station)
+    suspend fun insert(station: StationInfoDB)
 
     @Delete("DELETE FROM word_table")
-    suspend fun delete(station: Station)*/
+    suspend fun delete(station: StationInfoDB)*/
 }
