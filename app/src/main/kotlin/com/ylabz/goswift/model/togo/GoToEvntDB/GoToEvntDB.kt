@@ -71,8 +71,7 @@ abstract class ToGoRoomDB : RoomDatabase() {
         suspend fun populateDatabase(goToEvntDao: GoToEvntDao) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-            //goToEvntDao.insert(GoToEnvt("ash", 0.0, 0.0, OffsetDateTime.now(), "img"))
-            goToEvntDao.insert(GoToEnvt("ash", 0.0, 0.0, "img"))
+            goToEvntDao.insert(GoToEnvt("ash", 0.0, 0.0, OffsetDateTime.now(), "img"))
         }
     }
 

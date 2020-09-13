@@ -8,6 +8,10 @@ import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 
+/**
+ * Custom data type whose value is store in a single database column
+ * Converts a custom class to/from a known Room type
+ */
 object Converters {
     @TypeConverter
     fun fromTimestamp(value: Long?): Date? {
@@ -19,6 +23,11 @@ object Converters {
         return if (date == null) null else date.getTime()
     }
 
+
+    /**
+     * solves error when ROOM does not know how to convert SQL ROOM type to Kotlin
+     * "Cannot figure out how to read this field from a cursor."
+     */
     @RequiresApi(Build.VERSION_CODES.O)
     private val formatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME
 
