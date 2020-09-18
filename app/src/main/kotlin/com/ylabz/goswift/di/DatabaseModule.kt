@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.ylabz.goswift.model.bike.stationDB.StationDao
 import com.ylabz.goswift.model.bike.stationDB.StationRoomDB
-import com.ylabz.goswift.model.togo.GoToEvntDB.GoToEvntDao
-import com.ylabz.goswift.model.togo.GoToEvntDB.ToGoRoomDB
+import com.ylabz.goswift.model.togo.GoToEvtDB.GoToEvtDao
+import com.ylabz.goswift.model.togo.GoToEvtDB.ToGoRoomDB
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -44,7 +44,7 @@ object DatabaseModule {
     }
 
     @Provides
-    fun goToDao(database: ToGoRoomDB): GoToEvntDao {
+    fun goToDao(database: ToGoRoomDB): GoToEvtDao {
         return database.goToEvntDao()
     }
 }

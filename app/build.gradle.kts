@@ -7,21 +7,21 @@ plugins {
     id("kotlin-android")
 }
 
-val composeVersion = "1.0.0-alpha02"
+val composeVersion = "1.0.0-alpha03"
 val coroutinesVersion = "1.3.9-native-mt"
 val roomVersion = "2.2.5"
 val archLifecycleVersion = "2.2.0"
 val filamentVersion = "1.8.1"
 val retrofitVersion = "2.9.0"
-val okhttp3Version = "4.8.1"
-val conscryptVersion = "2.5.0"
+val okhttp3Version = "4.9.0"
+val conscryptVersion = "2.5.1"
 val moshiVersion = "1.10.0"
 val workmanVersion = "2.4.0"
 val pagingVersion = "2.1.2"
-val hiltVersion = "2.28.3-alpha"
+val hiltVersion = "2.29.1-alpha"
 val hiltCompiler = "1.0.0-alpha02"
 val glideVersion = "4.11.0"
-val coilVersion = "0.12.0"
+val coilVersion = "0.13.0"
 val googleMapsVersion = "3.1.0-beta"
 
 dependencies {

@@ -1,4 +1,4 @@
-package com.ylabz.goswift.model.togo.GoToEvntDB
+package com.ylabz.goswift.model.togo.GoToEvtDB
 
 import android.os.Build
 import androidx.annotation.RequiresApi

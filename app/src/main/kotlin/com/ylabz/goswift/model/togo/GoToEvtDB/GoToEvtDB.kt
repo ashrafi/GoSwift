@@ -1,4 +1,4 @@
-package com.ylabz.goswift.model.togo.GoToEvntDB
+package com.ylabz.goswift.model.togo.GoToEvtDB
 
 import android.content.Context
 import androidx.room.Database
@@ -12,12 +12,12 @@ import kotlinx.coroutines.launch
 import java.time.OffsetDateTime
 
 
-@Database(entities = arrayOf(GoToEnvt::class), version = 1, exportSchema = false)
+@Database(entities = arrayOf(GoToEvt::class), version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class ToGoRoomDB : RoomDatabase() {
 
 
-    abstract fun goToEvntDao(): GoToEvntDao
+    abstract fun goToEvntDao(): GoToEvtDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -68,10 +68,10 @@ abstract class ToGoRoomDB : RoomDatabase() {
          * Populate the database in a new coroutine.
          * If you want to start with more words, just add them.
          */
-        suspend fun populateDatabase(goToEvntDao: GoToEvntDao) {
+        suspend fun populateDatabase(goToEvtDao: GoToEvtDao) {
             // Start the app with a clean database every time.
             // Not needed if you only populate on creation.
-            goToEvntDao.insert(GoToEnvt("ash", 0.0, 0.0, OffsetDateTime.now(), "img"))
+            goToEvtDao.insert(GoToEvt("ash", 0.0, 0.0, OffsetDateTime.now(), "img"))
         }
     }
 

@@ -15,8 +15,8 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.viewModel
 import androidx.ui.tooling.preview.Preview
-import com.ylabz.goswift.model.GoToEvntViewModel
-import com.ylabz.goswift.model.togo.GoToEvntDB.GoToEnvt
+import com.ylabz.goswift.model.GoToEvtViewModel
+import com.ylabz.goswift.model.togo.GoToEvtDB.GoToEvt
 import com.ylabz.goswift.ui.utils.NavScreen
 import com.ylabz.goswift.ui.utils.navigateTo
 import java.time.OffsetDateTime
@@ -27,7 +27,7 @@ import java.time.format.DateTimeFormatter
 fun GoToEvtAdd() {
     var checked by remember { mutableStateOf(false) }
     var goToEvntText by remember { mutableStateOf(TextFieldValue("text")) }
-    val toGoViewModel = viewModel<GoToEvntViewModel>()
+    val toGoViewModel = viewModel<GoToEvtViewModel>()
 
     Column {
         Text("Add This")
@@ -47,7 +47,7 @@ fun GoToEvtAdd() {
                 elevation = 5.dp,
                 onClick = {
                     //checked = false
-                    toGoViewModel.addToGoItem(GoToEnvt(goToEvntText.text, 0.0, 0.0, OffsetDateTime.now(), "Img"))
+                    toGoViewModel.addToGoItem(GoToEvt(goToEvntText.text, 0.0, 0.0, OffsetDateTime.now(), "Img"))
                     navigateTo(NavScreen.GoToList)
                 }) {
                 Text(text = "Add", modifier = Modifier.padding(16.dp))
@@ -86,7 +86,7 @@ fun GoToEvtAdd() {
 
 @Composable
 fun GoToEvtList() {
-    val goToEvntViewModel = viewModel<GoToEvntViewModel>()
+    val goToEvntViewModel = viewModel<GoToEvtViewModel>()
     val goToEvntList = goToEvntViewModel.getToGoInfo().collectAsState(initial = emptyList()).value
     Column {
         LazyColumnFor(items = goToEvntList, itemContent = { goTos ->

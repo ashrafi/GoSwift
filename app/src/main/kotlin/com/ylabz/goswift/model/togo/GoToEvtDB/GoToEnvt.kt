@@ -1,4 +1,4 @@
-package com.ylabz.goswift.model.togo.GoToEvntDB
+package com.ylabz.goswift.model.togo.GoToEvtDB
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -7,7 +7,7 @@ import java.time.OffsetDateTime
 
 // Add add a camera to the event info
 @Entity(tableName = "GoToEvent")
-data class GoToEnvt(
+data class GoToEvt(
     @ColumnInfo(name = "eventName") var goToName: String = "",
     @ColumnInfo(name = "lat") var lat: Double,
     @ColumnInfo(name = "lon") var lon: Double,

@@ -6,8 +6,8 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
-import com.ylabz.goswift.model.togo.GoToEvntDB.GoToEnvt
-import com.ylabz.goswift.model.togo.ToGoRepo.GoToEvntRepo
+import com.ylabz.goswift.model.togo.GoToEvtDB.GoToEvt
+import com.ylabz.goswift.model.togo.ToGoRepo.GoToEvtRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -18,17 +18,17 @@ import kotlinx.coroutines.launch
 /**
  * the viewmodel is started in the onCreateView() in a Fragment
  */
-class GoToEvntViewModel @ViewModelInject constructor(
-    private val goToEvntRepo: GoToEvntRepo,
+class GoToEvtViewModel @ViewModelInject constructor(
+    private val goToEvtRepo: GoToEvtRepo,
     @Assisted private val savedStateHandle: SavedStateHandle,
     applicationContext: Application
 ) : AndroidViewModel(applicationContext) {
     // TODO: Implement the ViewModel
-    lateinit var goToEnvtTasks: Flow<List<GoToEnvt>>
+    lateinit var goToEvtTasks: Flow<List<GoToEvt>>
 
     init {
         viewModelScope.launch {
-            goToEnvtTasks = goToEvntRepo.getToGoInfo()
+            goToEvtTasks = goToEvtRepo.getToGoInfo()
         }
     }
 
@@ -36,19 +36,19 @@ class GoToEvntViewModel @ViewModelInject constructor(
     private val TAG: String? = "GoSwift"
     // The ViewModel maintains a reference to the repository to get data.
 
-    fun getToGoInfo(): Flow<List<GoToEnvt>> {
-        return goToEnvtTasks
+    fun getToGoInfo(): Flow<List<GoToEvt>> {
+        return goToEvtTasks
     }
 
-    fun addToGoItem(goToEnvtItem: GoToEnvt) {
+    fun addToGoItem(goToEnvtItem: GoToEvt) {
         viewModelScope.launch(Dispatchers.IO) {
-            goToEvntRepo.insert(goToEnvtItem)
+            goToEvtRepo.insert(goToEnvtItem)
         }
     }
 
     fun deleteAll() {
         viewModelScope.launch(Dispatchers.IO) {
-            goToEvntRepo.deleteAll()
+            goToEvtRepo.deleteAll()
         }
 
     }
