@@ -7,7 +7,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.ylabz.goswift.model.togo.GoToEvtDB.GoToEvt
-import com.ylabz.goswift.model.togo.ToGoRepo.GoToEvtRepo
+import com.ylabz.goswift.model.togo.GoToEvtRepo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch

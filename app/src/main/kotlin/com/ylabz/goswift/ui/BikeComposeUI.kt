@@ -64,7 +64,7 @@ fun bikeStationList() {
                     modifier = Modifier.height(200.dp),
                     gravity = Alignment.Center
                 ) {
-                    Row() {
+                    Row {
                         JustMapUI(bikeS.lat, bikeS.lon)
                         Text(
                             "Bike StationInfoDB at ${bikeS.stationName}",
@@ -134,7 +134,7 @@ fun singleStation(): StationInfoDB {
         }
     """.trimIndent()
 
-    var jsonStringStationInfoDB = """
+    val jsonStringStationInfoDB = """
     {
         "stationName":"Ash,
         "lat": 37.7770527,

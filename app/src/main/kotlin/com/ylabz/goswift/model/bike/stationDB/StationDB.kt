@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(StationInfoDB::class), version = 1, exportSchema = false)
+@Database(entities = [StationInfoDB::class], version = 1, exportSchema = false)
 abstract class StationRoomDB : RoomDatabase() {
     abstract fun stationDao(): StationDao
 

@@ -93,12 +93,12 @@ fun DetailsScreen(args: DetailsActivityArg) {
     Column(verticalArrangement = Arrangement.Center) {
         Spacer(Modifier.preferredHeight(15.dp))
         Text(
-            modifier = Modifier.gravity(Alignment.CenterHorizontally),
+            modifier = Modifier.align(Alignment.CenterHorizontally),
             text = args.name,
             style = MaterialTheme.typography.subtitle1
         )
         Text(
-            modifier = Modifier.gravity(Alignment.CenterHorizontally),
+            modifier = Modifier.align(Alignment.CenterHorizontally),
             text = args.description,
             style = MaterialTheme.typography.subtitle2
         )

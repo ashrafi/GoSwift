@@ -90,7 +90,7 @@ fun GoToEvtList() {
     val goToEvntList = goToEvntViewModel.getToGoInfo().collectAsState(initial = emptyList()).value
     Column {
         LazyColumnFor(items = goToEvntList, itemContent = { goTos ->
-            Column() {
+            Column {
                 Text(goTos.goToName)
                 Text(goTos.date.format(DateTimeFormatter.ofPattern("EEE, d MMM yyyy HH:mm:ss Z")))
             }

@@ -1,4 +1,4 @@
-package com.ylabz.goswift.model.togo.ToGoRepo
+package com.ylabz.goswift.model.togo
 
 import android.content.ContentResolver
 import android.content.Context
@@ -85,7 +85,7 @@ class GoToEvtRepo @Inject constructor(private val goToEvtDao: GoToEvtDao, @Appli
             val displayName: String = cur.getString(PROJECTION_DISPLAY_NAME_INDEX)
             val accountName: String = cur.getString(PROJECTION_ACCOUNT_NAME_INDEX)
             val ownerName: String = cur.getString(PROJECTION_OWNER_ACCOUNT_INDEX)
-            Log.v("GoSwift","Cal ${displayName}")
+            Log.v("GoSwift","Cal $displayName")
         }
 
     }

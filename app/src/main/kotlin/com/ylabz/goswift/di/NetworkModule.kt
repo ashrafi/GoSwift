@@ -61,7 +61,7 @@ object NetworkModule {
 
     //make repo call
     private val TAG: String? = "GoSwift"
-    private val BIKE_STATION_BASE_URL = "https://gbfs.fordgobike.com/"
+    private const val BIKE_STATION_BASE_URL = "https://gbfs.fordgobike.com/"
 
     interface BikeSysApiService {
         @GET("gbfs/en/system_information.json") //endpoint

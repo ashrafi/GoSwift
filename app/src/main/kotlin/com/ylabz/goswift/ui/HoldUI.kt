@@ -51,8 +51,8 @@ private fun mainWin(mainComposeUI: MainComposeUI) {
 
 private fun bodyContent(
     mainComposeUI: MainComposeUI,
-    padding: InnerPadding
-): @Composable() (InnerPadding) -> Unit = { padding ->
+    padding: PaddingValues
+): @Composable() (PaddingValues) -> Unit = { padding ->
     // ScrollableColumn is a composable that adds the ability to scroll through the
     // child views
     ScrollableColumn {
@@ -62,7 +62,7 @@ private fun bodyContent(
     }
 }
 
-private fun bodyContentScroll(padding: InnerPadding): @Composable() (InnerPadding) -> Unit =
+private fun bodyContentScroll(padding: PaddingValues): @Composable() (PaddingValues) -> Unit =
     { padding ->
         // ScrollableColumn is a composable that adds the ability to scroll through the
         // child views

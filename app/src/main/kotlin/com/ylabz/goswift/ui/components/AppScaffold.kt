@@ -3,7 +3,7 @@ package com.ylabz.goswift.ui.components
 import androidx.compose.foundation.Icon
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.InnerPadding
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -14,7 +14,7 @@ import com.ylabz.goswift.ui.utils.NavScreen
 import com.ylabz.goswift.ui.utils.navigateTo
 
 @Composable
-fun ScaffoldWithBottomBarAndCutout(viewContent: @Composable() (InnerPadding) -> Unit) {
+fun ScaffoldWithBottomBarAndCutout(viewContent: @Composable() (PaddingValues) -> Unit) {
     // Consider negative values to mean 'cut corner' and positive values to mean 'round corner'
     val fabShape = RoundedCornerShape(50)
     //val bodyContent: @Composable() (InnerPadding) -> Unit = {Text("Hi2 ")}
@@ -84,7 +84,7 @@ fun bottomBar() {
 }
 
 @Composable
-fun testBody(): @Composable() (InnerPadding) -> Unit = {
+fun testBody(): @Composable() (PaddingValues) -> Unit = {
     Column {
         Text("Hello")
     }

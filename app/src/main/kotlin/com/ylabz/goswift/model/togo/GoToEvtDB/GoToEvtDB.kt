@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import java.time.OffsetDateTime
 
 
-@Database(entities = arrayOf(GoToEvt::class), version = 1, exportSchema = false)
+@Database(entities = [GoToEvt::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class ToGoRoomDB : RoomDatabase() {
 
