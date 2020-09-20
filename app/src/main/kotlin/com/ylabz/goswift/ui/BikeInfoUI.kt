@@ -1,13 +1,14 @@
 package com.ylabz.goswift.ui
 
+import android.util.Log
 import androidx.compose.foundation.Box
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Button
 import androidx.compose.material.Card
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -21,7 +22,8 @@ import androidx.ui.tooling.preview.Preview
 import com.google.gson.Gson
 import com.ylabz.goswift.model.BikeViewModel
 import com.ylabz.goswift.model.bike.stationDB.StationInfoDB
-import com.ylabz.goswift.ui.components.JustMapUI
+import com.ylabz.goswift.ui.utils.NavScreen
+import com.ylabz.goswift.ui.utils.navigateTo
 
 /**
  * add a list of bike stations.
@@ -29,16 +31,19 @@ import com.ylabz.goswift.ui.components.JustMapUI
 
 
 @Composable
-fun bikeInfo(name: String) {
+fun BikeInfo(stationID: StationInfoDB) {
+
     Column {
-        Text(text = "Hello From Bike $name!")
-        bikeStationList()
-        //SimpleButtonComponentBike()
+        Text(text = "Hello From Bike ${stationID.stationName}!")
+        bikeStationList(stationID)
+        // SimpleButtonComponentBike()
     }
 }
 
+
+
 @Composable
-fun bikeStationList() {
+fun bikeStationList(stationID : StationInfoDB) {
     val bikeViewModel = viewModel<BikeViewModel>()
     //launchInComposition {}
     // Live Data
@@ -52,7 +57,7 @@ fun bikeStationList() {
     Log.v("GoSwift", "data is ${stationList.size}")
     */
     Column {
-        LazyColumnFor(items = stationList, itemContent = { bikeS ->
+        LazyColumnFor(items = stationList) { bikeS ->
             Card(
                 contentColor = Color.DarkGray, //colors[it % colors.size],
                 backgroundColor = Color.Cyan,
@@ -64,12 +69,25 @@ fun bikeStationList() {
                     modifier = Modifier.height(200.dp),
                     gravity = Alignment.Center
                 ) {
-                    Row {
-                        JustMapUI(bikeS.lat, bikeS.lon)
+                    Column() {
+                        //JustMapUI(bikeS.lat, bikeS.lon)
                         Text(
                             "Bike StationInfoDB at ${bikeS.stationName}",
-                            style = MaterialTheme.typography.h5
+                            //style = MaterialTheme.typography.h5
                         )
+                        Button(
+                            modifier = Modifier.padding(16.dp),
+                            elevation = 5.dp,
+                            onClick = {
+                                stationPressed(stationID, bikeS)
+                                navigateTo(NavScreen.BikeDetail)
+                            }) {
+                            // The Button composable allows you to provide child composables that inherit this button
+                            // functionality.
+                            // The Text composable is pre-defined by the Compose UI library; you can use this
+                            // composable to render text on the screen
+                            Text(text = "Simple button", modifier = Modifier.padding(16.dp))
+                        }
                     }
                 }
 
@@ -89,15 +107,24 @@ fun bikeStationList() {
                     )
                 }
             }
-        })
+        }
     }
 }
 
+fun stationPressed(stationID: StationInfoDB, id : StationInfoDB) {
+    Log.v(TAG, "station ${stationID.stationName}")
+    stationID.stationName = id.stationName
+    stationID.capacity = id.capacity
+    stationID.lat = id.lat
+    stationID.lon = id.lon
+    stationID.stationId = id.stationId
+    stationID.img = id.img
+}
 
 @Preview
 @Composable
 fun PreviewBikeComposeUI() {
-    bikeInfo("hi")
+    //BikeInfo(StationID())
 }
 
 fun singleStation(): StationInfoDB {
@@ -146,3 +173,5 @@ fun singleStation(): StationInfoDB {
 
     return Gson().fromJson(jsonStringStationInfoDB, StationInfoDB::class.java)
 }
+
+private val TAG: String = "GoSwift"

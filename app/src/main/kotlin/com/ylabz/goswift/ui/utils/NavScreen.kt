@@ -3,6 +3,7 @@ package com.ylabz.goswift.ui.utils
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 
 
 // Navigation
@@ -12,10 +13,23 @@ import androidx.compose.runtime.setValue
 sealed class NavScreen {
     object Home : NavScreen()
     object Bike : NavScreen()
+    object BikeDetail : NavScreen()
     object GoToAdd : NavScreen()
     object GoToList : NavScreen()
     object Map : NavScreen()
 }
+
+/**
+ * Convert a screen to a bundle that can be stored in [SavedStateHandle]
+ *
+private fun Screen.toBundle(): Bundle {
+    return bundleOf(SIS_NAME to id.name).also {
+        // add extra keys for various types here
+        if (this is Article) {
+            it.putString(SIS_POST, postId)
+        }
+    }
+}*/
 
 object AppScreen {
     var currentScreen by mutableStateOf<NavScreen>(

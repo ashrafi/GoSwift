@@ -133,6 +133,7 @@ fun JustMapUI(latitude: Double, longitude: Double) {
                 MarkerOptions().position(position)
             )
             it.moveCamera(CameraUpdateFactory.newLatLng(position))
+            it.setZoom(18f)
         }
         //mapView.minimumHeight = 400
     }
