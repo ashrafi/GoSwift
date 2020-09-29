@@ -1,4 +1,4 @@
-package com.ylabz.goswift.ui
+package com.ylabz.goswift.ui.event
 
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column

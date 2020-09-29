@@ -9,8 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.model.bike.stationDB.StationInfoDB
-import com.ylabz.goswift.ui.*
+import com.ylabz.goswift.ui.HomeUI
+import com.ylabz.goswift.ui.bike.BikeDetailsScreen
+import com.ylabz.goswift.ui.bike.BikeStationsInfo
+import com.ylabz.goswift.ui.components.MapUI
 import com.ylabz.goswift.ui.components.ScaffoldWithBottomBarAndCutout
+import com.ylabz.goswift.ui.event.GoToEvtAdd
+import com.ylabz.goswift.ui.event.GoToEvtList
 import com.ylabz.goswift.ui.utils.AppScreen
 import com.ylabz.goswift.ui.utils.NavScreen
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +51,7 @@ class MainActivity : AppCompatActivity() {
                 })*/
                 when (screen) {
                     is NavScreen.Home -> HomeUI()
-                    is NavScreen.Bike -> BikeInfo(stationID)
+                    is NavScreen.Bike -> BikeStationsInfo(stationID)
                     is NavScreen.BikeDetail -> {
                         BikeDetailsScreen(stationID)
                     }

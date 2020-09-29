@@ -1,11 +1,9 @@
-package com.ylabz.goswift.ui
+package com.ylabz.goswift.ui.components
 
 import android.location.Location
 import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
-import com.ylabz.goswift.ui.components.DetailsActivityArg
-import com.ylabz.goswift.ui.components.DetailsScreen
 
 @Composable
 fun MapUI() {

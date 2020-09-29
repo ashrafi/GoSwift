@@ -37,10 +37,13 @@ fun GoSwiftTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composabl
         LightColorPalette
     }
 
+    /**
+     * Set Material Theme
+     */
     MaterialTheme(
-            colors = colors,
-            typography = typography,
-            shapes = shapes,
-            content = content
+        colors = colors,
+        typography = typography,
+        shapes = shapes,
+        content = content
     )
 }

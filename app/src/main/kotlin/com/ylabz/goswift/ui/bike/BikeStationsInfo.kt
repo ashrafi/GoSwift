@@ -1,11 +1,10 @@
-package com.ylabz.goswift.ui
+package com.ylabz.goswift.ui.bike
 
 import android.util.Log
 import androidx.compose.foundation.Box
+import androidx.compose.foundation.ScrollableRow
 import androidx.compose.foundation.Text
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumnFor
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Button
@@ -31,7 +30,7 @@ import com.ylabz.goswift.ui.utils.navigateTo
 
 
 @Composable
-fun BikeInfo(stationID: StationInfoDB) {
+fun BikeStationsInfo(stationID: StationInfoDB) {
 
     Column {
         Text(text = "Hello From Bike ${stationID.stationName}!")
@@ -41,9 +40,8 @@ fun BikeInfo(stationID: StationInfoDB) {
 }
 
 
-
 @Composable
-fun bikeStationList(stationID : StationInfoDB) {
+fun bikeStationList(stationID: StationInfoDB) {
     val bikeViewModel = viewModel<BikeViewModel>()
     //launchInComposition {}
     // Live Data
@@ -58,60 +56,64 @@ fun bikeStationList(stationID : StationInfoDB) {
     */
     Column {
         LazyColumnFor(items = stationList) { bikeS ->
-            Card(
-                contentColor = Color.DarkGray, //colors[it % colors.size],
-                backgroundColor = Color.Cyan,
-                shape = RoundedCornerShape(8.dp),
-                modifier = Modifier.padding(8.dp)
-            ) {
-                Box(
-                    padding = 16.dp,
-                    modifier = Modifier.height(200.dp),
-                    gravity = Alignment.Center
-                ) {
-                    Column() {
-                        //JustMapUI(bikeS.lat, bikeS.lon)
-                        Text(
-                            "Bike StationInfoDB at ${bikeS.stationName}",
-                            //style = MaterialTheme.typography.h5
-                        )
-                        Button(
-                            modifier = Modifier.padding(16.dp),
-                            elevation = 5.dp,
-                            onClick = {
-                                stationPressed(stationID, bikeS)
-                                navigateTo(NavScreen.BikeDetail)
-                            }) {
-                            // The Button composable allows you to provide child composables that inherit this button
-                            // functionality.
-                            // The Text composable is pre-defined by the Compose UI library; you can use this
-                            // composable to render text on the screen
-                            Text(text = "Simple button", modifier = Modifier.padding(16.dp))
+            ScrollableRow(modifier = Modifier.fillMaxWidth(), children = {
+                Row {
+                    Card(
+                        contentColor = Color.DarkGray, //colors[it % colors.size],
+                        backgroundColor = Color.Cyan,
+                        shape = RoundedCornerShape(8.dp),
+                        modifier = Modifier.padding(8.dp)
+                    ) {
+                        Box(
+                            padding = 16.dp,
+                            modifier = Modifier.height(200.dp),
+                            gravity = Alignment.Center
+                        ) {
+                            Column {
+                                //JustMapUI(bikeS.lat, bikeS.lon)
+                                Text(
+                                    "Bike StationInfoDB at ${bikeS.stationName}",
+                                    //style = MaterialTheme.typography.h5
+                                )
+                                Button(
+                                    modifier = Modifier.padding(16.dp),
+                                    elevation = 5.dp,
+                                    onClick = {
+                                        stationPressed(stationID, bikeS)
+                                        navigateTo(NavScreen.BikeDetail)
+                                    }) {
+                                    // The Button composable allows you to provide child composables that inherit this button
+                                    // functionality.
+                                    // The Text composable is pre-defined by the Compose UI library; you can use this
+                                    // composable to render text on the screen
+                                    Text(text = "Simple button", modifier = Modifier.padding(16.dp))
+                                }
+                            }
+                        }
+
+                    }
+                    Card(
+                        shape = RoundedCornerShape(8.dp),
+                        backgroundColor = MaterialTheme.colors.surface,
+                    ) {
+                        Box(
+                            padding = 16.dp,
+                            modifier = Modifier.height(200.dp),
+                            gravity = Alignment.Center
+                        ) {
+                            Text(
+                                text = "This is a card view",
+                                style = MaterialTheme.typography.h4
+                            )
                         }
                     }
                 }
-
-            }
-            Card(
-                shape = RoundedCornerShape(8.dp),
-                backgroundColor = MaterialTheme.colors.surface,
-            ) {
-                Box(
-                    padding = 16.dp,
-                    modifier = Modifier.height(200.dp),
-                    gravity = Alignment.Center
-                ) {
-                    Text(
-                        text = "This is a card view",
-                        style = MaterialTheme.typography.h4
-                    )
-                }
-            }
+            })
         }
     }
 }
 
-fun stationPressed(stationID: StationInfoDB, id : StationInfoDB) {
+fun stationPressed(stationID: StationInfoDB, id: StationInfoDB) {
     Log.v(TAG, "station ${stationID.stationName}")
     stationID.stationName = id.stationName
     stationID.capacity = id.capacity

@@ -8,10 +8,9 @@ plugins {
 }
 
 val composeVersion = "1.0.0-alpha03"
-val coroutinesVersion = "1.3.9-native-mt"
+val coroutinesVersion = "1.3.9-native-mt-2"
 val roomVersion = "2.2.5"
 val archLifecycleVersion = "2.2.0"
-val filamentVersion = "1.8.1"
 val retrofitVersion = "2.9.0"
 val okhttp3Version = "4.9.0"
 val conscryptVersion = "2.5.1"
@@ -23,8 +22,12 @@ val hiltCompiler = "1.0.0-alpha02"
 val glideVersion = "4.11.0"
 val coilVersion = "0.13.0"
 val googleMapsVersion = "3.1.0-beta"
+val accompanistVersion = "0.2.2"
 
 dependencies {
+
+    // Swipe to reveal
+    //implementation("com.github.kacmacuna:SwipeReveal-Compose:0.1.4")
 
     // Google Maps
     implementation("com.google.android.libraries.maps:maps:$googleMapsVersion")
@@ -105,6 +108,10 @@ dependencies {
     // coil
     implementation("io.coil-kt:coil:$coilVersion")
 
+    // coil lib
+    implementation("dev.chrisbanes.accompanist:accompanist-coil:$accompanistVersion")
+
+
     // Testing
     // For instrumentation tests
     androidTestImplementation("com.google.dagger:hilt-android-testing:$hiltVersion")
@@ -118,11 +125,10 @@ dependencies {
 
 android {
     compileSdkVersion(30)
-    buildToolsVersion = "29.0.3"
 
     defaultConfig {
         applicationId = "com.ylabz.goswift"
-        minSdkVersion(26)
+        minSdkVersion(27)
         targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"

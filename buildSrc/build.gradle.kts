@@ -2,6 +2,9 @@ repositories {
     mavenCentral()
     jcenter()
     google()
+    /*maven {
+        url = uri("https://jitpack.io")
+    }*/
 }
 
 dependencies {
