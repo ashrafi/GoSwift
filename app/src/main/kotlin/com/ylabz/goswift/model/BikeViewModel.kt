@@ -36,8 +36,9 @@ class BikeViewModel @ViewModelInject constructor(
         viewModelScope.launch {
             stationRepo.callGBFSAPI()
         }
-
     }
+
+
 
 
     //make repo call

@@ -38,6 +38,8 @@ import com.google.android.libraries.maps.MapView
 import com.google.android.libraries.maps.model.LatLng
 import com.google.android.libraries.maps.model.MarkerOptions
 import com.ylabz.goswift.R
+import com.ylabz.goswift.model.bike.stationDB.StationInfoDB
+
 
 /**
  * Remembers a MapView and gives it the lifecycle of the current LifecycleOwner
@@ -88,6 +90,16 @@ fun GoogleMap.setZoom(
     setMaxZoomPreference(zoom)
 }
 
+fun GoogleMap.moveCameraTo(lat: Double, lng :Double) {
+    val position = LatLng(lat, lng)
+    clear()
+    addMarker(
+        MarkerOptions().position(position)
+    )
+    moveCamera(CameraUpdateFactory.newLatLng(position))
+    //setZoom(mapZoom)
+}
+
 @Composable
 fun DetailsScreen(args: DetailsActivityArg) {
     Column(verticalArrangement = Arrangement.Center) {
@@ -103,12 +115,12 @@ fun DetailsScreen(args: DetailsActivityArg) {
             style = MaterialTheme.typography.subtitle2
         )
         Spacer(Modifier.preferredHeight(9.dp))
-        CityMapView(args.latitude, args.longitude)
+        CityMapView(args.latitude.toDouble(), args.longitude.toDouble())
     }
 }
 
 @Composable
-private fun CityMapView(latitude: String, longitude: String) {
+private fun CityMapView(latitude: Double, longitude: Double) {
     // The MapView lifecycle is handled by this composable. As the MapView also needs to be updated
     // with input from Compose UI, those updates are encapsulated into the MapViewContainer
     // composable. In this way, when an update to the MapView happens, this composable won't
@@ -118,33 +130,15 @@ private fun CityMapView(latitude: String, longitude: String) {
 }
 
 @Composable
-fun JustMapUI(latitude: Double, longitude: Double) {
-    val justMapView = rememberMapViewWithLifecycle()
-    AndroidView(
-        //modifier = Modifier.fillMaxWidth().fillMaxHeight(),
-        //postInflationCallback =
-        { justMapView }
-    ) { mapView ->
-        // Reading zoom so that AndroidView recomposes when it changes. The getMapAsync lambda
-        // is stored for later, Compose doesn't recognize state reads
-        mapView.getMapAsync {
-            val position = LatLng(latitude, longitude)
-            it.addMarker(
-                MarkerOptions().position(position)
-            )
-            it.moveCamera(CameraUpdateFactory.newLatLng(position))
-            it.setZoom(18f)
-        }
-        //mapView.minimumHeight = 400
-    }
-
+fun JustMapUI(currentStation: StationInfoDB?) {
+    CityMapView(currentStation?.lat ?: 0.0, currentStation?.lon ?: 0.0)
 }
 
 @Composable
 private fun MapViewContainer(
     map: MapView,
-    latitude: String,
-    longitude: String
+    latitude: Double,
+    longitude: Double
 ) {
     var zoom by savedInstanceState { InitialZoom }
 
@@ -160,6 +154,7 @@ private fun MapViewContainer(
         // is stored for later, Compose doesn't recognize state reads
         val mapZoom = zoom
         mapView.getMapAsync {
+            it.clear()
             it.setZoom(mapZoom)
             val position = LatLng(latitude.toDouble(), longitude.toDouble())
             it.addMarker(
@@ -202,6 +197,6 @@ data class DetailsActivityArg(
     val longitude: String
 )
 
-private const val InitialZoom = 5f
+private const val InitialZoom = 15f
 const val MinZoom = 2f
 const val MaxZoom = 20f

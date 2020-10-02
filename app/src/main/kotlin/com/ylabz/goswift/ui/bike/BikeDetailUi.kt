@@ -9,7 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.ylabz.goswift.model.bike.stationDB.StationInfoDB
-import com.ylabz.goswift.ui.components.JustMapUI
 import com.ylabz.goswift.ui.utils.NavScreen
 import com.ylabz.goswift.ui.utils.navigateTo
 
@@ -39,7 +38,7 @@ fun BikeDetailsScreen(stationID : StationInfoDB) {
             Text(text = "Home button", modifier = Modifier.padding(16.dp))
         }
         Spacer(Modifier.preferredHeight(16.dp))
-        JustMapUI(stationID.lat, stationID.lon)
+        //JustMapUI(stationID.lat.toString(), stationID.lon.toString())
         //CityMapView(args.latitude, args.longitude)
     }
 }

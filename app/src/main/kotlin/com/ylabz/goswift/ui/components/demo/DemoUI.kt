@@ -1,17 +1,20 @@
 package com.ylabz.goswift.ui.components.demo
 
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.Icon
+import androidx.compose.foundation.ScrollableColumn
+import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.ExtendedFloatingActionButton
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -20,16 +23,15 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.ui.tooling.preview.Preview
 import com.ylabz.goswift.ui.MainComposeUI
-import com.ylabz.goswift.ui.components.JustMapUI
-import com.ylabz.goswift.ui.components.colors
+import com.ylabz.goswift.ui.components.diagonalGradientTint
 import com.ylabz.goswift.ui.components.horizontalGradientBackground
 import com.ylabz.goswift.ui.utils.*
 
 @Composable
 fun DemoUIView() {
-    Stack {
+
         // 37.773972, -122.431297
-        JustMapUI(latitude = 37.773972, longitude = -122.431297)
+        //JustMapUI(latitude = 37.773972, longitude = -122.431297)
         Column {
             //ArtistCard()
             Row {
@@ -55,7 +57,7 @@ fun DemoUIView() {
                 )
             }
         }
-    }
+
 }
 
 @Composable
@@ -126,9 +128,11 @@ private fun bodyContent(
 }
 
 private fun bodyContentScroll(
-    padding: PaddingValues = PaddingValues()
+    padding: PaddingValues = PaddingValues(1.dp)
 ): @Composable() (PaddingValues) -> Unit = {
     ScrollableColumn(contentPadding = PaddingValues()) {
+    Text("hi")
+    /*
         Column {
             repeat(100) {
                 // Card composable is a predefined composable that is meant to represent
@@ -142,9 +146,16 @@ private fun bodyContentScroll(
                     Spacer(modifier = Modifier.fillMaxWidth().preferredHeight(200.dp))
                 }
             }
-        }
+        }*/
     }
 }
+/*
+@Preview(name = "Scroll Red/Blue")
+@Composable
+fun PreviewbodyContentScrollDemoUIbr() {
+    bodyContentScroll()
+}
+*/
 
 @Composable
 private fun AppContent(
@@ -158,8 +169,9 @@ private fun AppContent(
 }
 
 @Composable
-fun grad(gradColors: List<Color>) {
-    Box {
+fun grad(gradColors: List<Color>, refColor : Color = Rose4) {
+    Box(modifier = Modifier.fillMaxSize(),
+        alignment = Alignment.BottomCenter) {
         Text("hi")
         Spacer(
             modifier = Modifier
@@ -167,23 +179,20 @@ fun grad(gradColors: List<Color>) {
                 .fillMaxWidth()
                 .horizontalGradientBackground(gradColors)
         )
-        Text("second 2")
-    }
-}
-
-@Composable
-fun gradBase() {
-    Box {
-        Text("hi")
+        Text("second 2", modifier = Modifier.horizontalGradientBackground(gradColors)
+            .fillMaxWidth())
         Spacer(
             modifier = Modifier
                 .preferredHeight(280.dp)
                 .fillMaxWidth()
-                .background(Rose4)
+                .diagonalGradientTint(gradColors, BlendMode.Darken)
         )
-        Text("second 2")
+        Text("Clear")
+
     }
 }
+
+
 
 val grad_color_rose = listOf(Rose4, Lavender3, Rose2, Lavender3, Rose4)
 val grad_color_blue = listOf(Ocean3, Shadow3)
@@ -224,8 +233,3 @@ fun PreviewDemoUIbr() {
 }
 
 
-@Preview(name = "Scroll Red/Blue")
-@Composable
-fun PreviewbodyContentScrollDemoUIbr() {
-    bodyContentScroll()
-}

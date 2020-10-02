@@ -7,7 +7,7 @@ plugins {
     id("kotlin-android")
 }
 
-val composeVersion = "1.0.0-alpha03"
+val composeVersion = "1.0.0-alpha04"
 val coroutinesVersion = "1.3.9-native-mt-2"
 val roomVersion = "2.2.5"
 val archLifecycleVersion = "2.2.0"
@@ -22,7 +22,7 @@ val hiltCompiler = "1.0.0-alpha02"
 val glideVersion = "4.11.0"
 val coilVersion = "0.13.0"
 val googleMapsVersion = "3.1.0-beta"
-val accompanistVersion = "0.2.2"
+val accompanistVersion = "0.3.0"
 
 dependencies {
 
@@ -128,7 +128,7 @@ android {
 
     defaultConfig {
         applicationId = "com.ylabz.goswift"
-        minSdkVersion(27)
+        minSdkVersion(27 )
         targetSdkVersion(30)
         versionCode = 1
         versionName = "1.0"

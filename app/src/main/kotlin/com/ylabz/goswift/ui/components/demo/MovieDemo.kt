@@ -8,10 +8,12 @@ import androidx.compose.foundation.animation.defaultFlingConfig
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.ScrollableController
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.RowScope.align
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.*
-import androidx.compose.ui.*
+import androidx.compose.ui.LayoutModifier
+import androidx.compose.ui.Measurable
+import androidx.compose.ui.MeasureScope
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -21,8 +23,6 @@ import androidx.compose.ui.platform.DensityAmbient
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.ylabz.goswift.ui.Chip
-import com.ylabz.goswift.ui.StarRating
 import dev.chrisbanes.accompanist.coil.CoilImage
 import kotlin.math.abs
 import kotlin.math.roundToInt
@@ -115,7 +115,6 @@ fun Screen() {
             modifier = Modifier
                 .offset(getX = { center + offset }, getY = { lerp(0f, 50f, distFromCenter) })
                 .width(posterWidthDp)
-                .align(Alignment.Bottom)
         )
     }
 }
@@ -154,12 +153,6 @@ fun MoviePoster(movie: Movie, modifier: Modifier = Modifier) {
             fontSize = 24.sp,
             color = Color.Black
         )
-        Row {
-            for (chip in movie.chips) {
-                Chip(chip)
-            }
-        }
-        StarRating(9.0f)
     }
 }
 
